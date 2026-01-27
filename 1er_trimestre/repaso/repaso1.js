@@ -1,0 +1,4 @@
+
+let lista={
+    nombre: 'strin'
+}

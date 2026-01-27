@@ -1,0 +1,9 @@
+
+{
+    "nombre": "charmander",
+    "ataque": 20,
+    "defensa": 30,
+    "vida": 200,
+    "tipo": "fuego",
+    "peleas": 0
+}
