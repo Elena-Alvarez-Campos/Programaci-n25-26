@@ -1,9 +1,26 @@
 
 public class baraja{
-    //Atributo
-    private String barajaCompleta;
+    
+    //atributos
+    private carta cartas[];
+    //private int posicion_siguiente;
 
+    //constante
+    public static final int num_cartas=40;
+    
+    public baraja(){
+        this.cartas=new carta[num_cartas];
+
+    }
+    @Override
+    public String toString(){
+        return "La baraja es "+cartas;
+    }
+
+    //Atributo
+    //private String barajaCompleta;
     //Constructor
+    /*
     public baraja(){
         this.barajaCompleta="";
         for(int x=0; x<4; x++){
@@ -45,5 +62,6 @@ public class baraja{
     
 
 
-
+    */
 }
+    
