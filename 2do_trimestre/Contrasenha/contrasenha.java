@@ -43,12 +43,12 @@ public class contrasenha{
         this.longitud=longitud;
         this.contrasenha="";
         for(int i=0; i<longitud; i++){
-            int tipo=numAleatorio.nextInt(9);
+            int tipo=numAleatorio.nextInt(10);
             if(tipo==1 || tipo==6){//minúsculas
                 contrasenha += (char)(numAleatorio.nextInt(27)+97);
             }else if(tipo==2 || tipo==5){//mayúsculas
                 contrasenha += (char)(numAleatorio.nextInt(27)+65);
-            }else if(tipo==3 || tipo==4 || tipo==7 || tipo==8){//números
+            }else if(tipo==3 || tipo==4 || tipo==7 || tipo==8 || tipo==9){//números
                 contrasenha += numAleatorio.nextInt(10);
             }else{//símbolos
                 tipo=numAleatorio.nextInt(4);
@@ -109,16 +109,16 @@ public class contrasenha{
             elemento=(int)(contrasenha.charAt(i));
         
             if(97<=elemento && elemento<123){
-                min++;
+                min=min+1;
             }else if(65<=elemento && elemento<91){
-                may++;
+                may=may+1;
             }else if(elemento<=48 && elemento<57){
-                num++;
+                num=num+1;
             }else{
-                esp++;
+                esp=esp+1;
             }
         }
-        if(may>=2 && min>=2 && num>=5 && esp>0){
+        if(may>1 && min>1 && num>4 && esp>0){
             return true;
         }
         else{
