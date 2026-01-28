@@ -10,11 +10,16 @@ public class baraja{
     
     public baraja(){
         this.cartas=new carta[num_cartas];
+        for(int i=0; i<4; i++){
+            cartas[i].palo=carta.Palos[i];
+
+
+        }
 
     }
     @Override
     public String toString(){
-        return "La baraja es "+cartas;
+        return "la barajaes "+cartas;
     }
 
     //Atributo

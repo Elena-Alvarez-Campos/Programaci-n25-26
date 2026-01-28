@@ -13,4 +13,5 @@ public class carta {
         this.palo=palo;
     }
     
+
 }
