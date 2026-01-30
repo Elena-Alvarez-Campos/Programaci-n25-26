@@ -10,16 +10,26 @@ public class baraja{
     
     public baraja(){
         this.cartas=new carta[num_cartas];
+        String correspondePalo="";
         for(int i=0; i<4; i++){
-            cartas[i].palo=carta.Palos[i];
-
-
+            correspondePalo=carta.Palos[i];
+            for(int x=1; x<=carta.Limite_carta_palo; x++){
+                if(x==9 || x==8){
+                    continue;
+                }
+                this.cartas[x]={1,correspondePalo}
+                
+            }
         }
 
     }
-    @Override
-    public String toString(){
-        return "la barajaes "+cartas;
+    //getter
+    public carta[] getCartas(){
+        return cartas;
+    }
+    public static void main(String[]args){
+        baraja baraja1 = new baraja();
+        System.out.println(baraja1.getCartas());
     }
 
     //Atributo

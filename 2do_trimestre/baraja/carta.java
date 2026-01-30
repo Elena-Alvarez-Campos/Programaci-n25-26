@@ -1,3 +1,4 @@
+
 public class carta {
     //atributo
     private int numero;
