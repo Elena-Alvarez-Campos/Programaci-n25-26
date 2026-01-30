@@ -5,14 +5,12 @@ public class App {
         /*
         contrasenha contrasenha_1=new contrasenha();
         contrasenha contrasenha_2=new contrasenha(20);
-        System.out.println(contrasenha_1);
-        System.out.println(contrasenha_2);
         
         System.out.println(contrasenha_1.esFuerte());
         System.out.println(contrasenha_2.esFuerte());
 
         System.out.println(contrasenha_1.modificarContrasenha());
-        System.out.println(contrasenha_1);
+        System.out.println(contrasenha_1.getContrasenha());
         System.out.println(contrasenha_1.esFuerte());*/
         //Crear clase ejecutable
         //TAmaño que se indica por teclado
@@ -29,7 +27,7 @@ public class App {
         contrasenha contrasenha_3=new contrasenha(Integer.parseInt(longitudPideTeclado));
         System.out.println(contrasenha_3.getLongitud());
         while (contrasenha_3.esFuerte()==false) {
-            contrasenha_3.modificarContrasenhaAleatoria();
+            contrasenha_3.generarContrasenha();
         }
         System.out.println(contrasenha_3.getContrasenha());
 

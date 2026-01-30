@@ -130,27 +130,7 @@ public class contrasenha{
 
     /*generarContrasenha():  genera la contraseña del objeto con la longitud que
     tenga. */
-
-    /*modificarContrasenha(): para cambiar una contraseña que ya exista. Este
-    método pedirá por teclado un String que contenga la nueva contraseña. */
-    public String modificarContrasenha(){
-        String NuevaContrasenha=JOptionPane.showInputDialog("Introduce una nueva contraseña");
-        while(NuevaContrasenha.length()<11){
-            NuevaContrasenha=JOptionPane.showInputDialog("Introduce una nueva contraseña con más de 6 chr");
-        }
-        this.contrasenha=NuevaContrasenha;
-        this.longitud=NuevaContrasenha.length();
-        return this.contrasenha;
-
-    }
-    //Crear clase ejecutable
-    //TAmaño que se indica por teclado
-    //BUcle crea objeto por cada posición del arry
-    //Longitud contraseña antes del bucle
-    //Array booleano almacena si contraseña esFuerte()
-    //Mostrar contraseña y si no es fuerte usar bucle anteriror
-    public String modificarContrasenhaAleatoria(){
-        
+    public String generarContrasenha(){
         Random numAleatorio= new Random();
         this.contrasenha="";
         for(int i=0; i<this.longitud; i++){
@@ -181,5 +161,26 @@ public class contrasenha{
         }
         return this.contrasenha;
     }
+
+
+    /*modificarContrasenha(): para cambiar una contraseña que ya exista. Este
+    método pedirá por teclado un String que contenga la nueva contraseña. */
+    public String modificarContrasenha(){
+        String NuevaContrasenha=JOptionPane.showInputDialog("Introduce una nueva contraseña");
+        while(NuevaContrasenha.length()<11){
+            NuevaContrasenha=JOptionPane.showInputDialog("Introduce una nueva contraseña con más de 6 chr");
+        }
+        this.contrasenha=NuevaContrasenha;
+        this.longitud=NuevaContrasenha.length();
+        return this.contrasenha;
+
+    }
+    //Crear clase ejecutable
+    //TAmaño que se indica por teclado
+    //BUcle crea objeto por cada posición del arry
+    //Longitud contraseña antes del bucle
+    //Array booleano almacena si contraseña esFuerte()
+    //Mostrar contraseña y si no es fuerte usar bucle anteriror
+    
        
 }
