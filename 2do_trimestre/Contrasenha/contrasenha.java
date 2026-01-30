@@ -41,35 +41,8 @@ public class contrasenha{
         //this.numeroDeCuenta=Math.abs(numAleatorio.nextLong());
     }
     public contrasenha(int longitud){
-        Random numAleatorio= new Random();
         this.longitud=longitud;
         this.contrasenha="";
-        for(int i=0; i<longitud; i++){
-            int tipo=numAleatorio.nextInt(10);
-            if(tipo==1 || tipo==6){//minúsculas
-                contrasenha += (char)(numAleatorio.nextInt(27)+97);
-            }else if(tipo==2 || tipo==5){//mayúsculas
-                contrasenha += (char)(numAleatorio.nextInt(27)+65);
-            }else if(tipo==3 || tipo==4 || tipo==7 || tipo==8 || tipo==9){//números
-                contrasenha += numAleatorio.nextInt(10);
-            }else{//símbolos
-                tipo=numAleatorio.nextInt(4);
-                switch (tipo) {
-                    case 1://barra /
-                        contrasenha+=(char)(47);
-                        break;
-                    case 2://guión bajo _
-                        contrasenha+=(char)(95);
-                        break;
-                    case 3://Dólar $
-                        contrasenha+=(char)(36);
-                        break;
-                    default://guión medio -
-                        contrasenha+=(char)(45);
-                        break;
-                }
-            }
-        }
     }
     //Setters 
     //contraseña
