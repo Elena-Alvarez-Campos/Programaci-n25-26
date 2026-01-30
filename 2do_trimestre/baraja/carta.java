@@ -26,14 +26,29 @@ public class carta {
     public int getNumero(){
         return numero;
     }
-    //INtegrar en la baraja (no recomendado)
+    //Integrar en la baraja (no recomendado)
     //Método para que se añadan nuevas cartas
-    public String[] cartaNueva(){
-        return ;
+    public String cartaNueva(){
+        String paloActual="";
+        int carta_actual=0;
+        String[] baraja = new String[40];
+        for(int x=0; x<4; x++){
+            paloActual=Palos[x];
+            for(int y=0; y<Limite_carta_palo; y++){
+                if(y==8||y==9){
+                    continue;
+                }
+                baraja[i+y]=(y+1)+paloActual;
+            }
+
+        }
+        return baraja[11];
+        
     }
 
     public static void main(String[]args) throws Exception{
-        carta carta1=new carta(Limite_carta_palo, null);
+        carta carta1=new carta(2, "oros");
+        System.out.println(carta1.cartaNueva());
     }
     
 }

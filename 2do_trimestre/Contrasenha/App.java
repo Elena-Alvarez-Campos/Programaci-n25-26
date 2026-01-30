@@ -28,6 +28,7 @@ public class App {
         System.out.println(contrasenha_3.getLongitud());
         while (contrasenha_3.esFuerte()==false) {
             contrasenha_3.generarContrasenha();
+            //System.out.println(contrasenha_3.esFuerte());
         }
         System.out.println(contrasenha_3.getContrasenha());
 
