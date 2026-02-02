@@ -1,3 +1,5 @@
+import java.util.Random;
+import javax.swing.JOptionPane;
 public class carta {
     //atributo
     private int numero;
@@ -28,7 +30,7 @@ public class carta {
     }
     //Integrar en la baraja (no recomendado)
     //Método para que se añadan nuevas cartas
-    public String cartaNueva(){
+    public String[] cartaNueva(){
         String[] baraja = new String[40];
         int contadorPalos=0;
         int contadorNum=0;
@@ -53,8 +55,16 @@ public class carta {
             }
             
         }
-        return baraja[39];
+        return baraja;
         
     }
-    
+    //barajar: cambia de posición todas las cartas aleatoriamente
+    public void barajar(){
+        int[] nuevoOrden = new int[40];
+        Random numAleatorio= new Random();
+
+        
+
+
+    }
 }

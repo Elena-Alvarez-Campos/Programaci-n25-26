@@ -1,82 +1,67 @@
-/*
+import java.util.Random;
+
 public class baraja{
     
     //atributos
-    private carta cartas[];
+    private String[] cartas;
+    private int posicion;
     //private int posicion_siguiente;
 
     //constante
     public static final int num_cartas=40;
+    public static final String[] Palos={"espadas","copas","oros","bastos"};
+    public static final int Limite_carta_palo=12;
     
-    public baraja(){
-        this.cartas=new carta[num_cartas];
-        String correspondePalo="";
-        for(int i=0; i<4; i++){
-            correspondePalo=carta.Palos[i];
-            for(int x=1; x<=carta.Limite_carta_palo; x++){
-                if(x==9 || x==8){
-                    continue;
-                }
-                this.cartas[x]={1,correspondePalo}
-                
-            }
-        }
-
+    //constructor
+    public baraja(String[] cartas){
+        this.cartas=cartas;
+        this.posicion=0;
     }
-    //getter
-    public carta[] getCartas(){
+    //setters
+    public void setCartas(String[] cartas){
+        this.cartas=cartas;
+    }
+    public void setPosicion(int posicion){
+        this.posicion=posicion;
+    }
+    //getters
+    public String[] getCartas(){
         return cartas;
     }
-    public static void main(String[]args){
-        baraja baraja1 = new baraja();
-        System.out.println(baraja1.getCartas());
+    public int posicion(){
+        return posicion;
     }
-*/
-    //Atributo
-    //private String barajaCompleta;
-    //Constructor
-    /*
-    public baraja(){
-        this.barajaCompleta="";
-        for(int x=0; x<4; x++){
-            String palo="";
-            switch (x) {
-                case 0:
-                    palo="espadas";
-                    break;
-                case 1:
-                    palo="bastos";
-                    break;
-                case 2:
-                    palo="oros";
-                    break;
-                default:
-                    palo="copas";
-                    break;
-            }
-            for(int i=1; i<=12; i++){
-            if(i==8 || i==9){
-                continue;
-            }
-            else{
-                barajaCompleta += (i+palo);
-            }
+    
+    //barajar: cambia de posición todas las cartas aleatoriamente
+    public void barajar(){
+        /*
+        int[] nuevoOrden = new int[40];
+        Random numAleatorio= new Random();
+        boolean terminar=false;
+        while (terminar==false) {
+            
+            numAleatorio.nextInt(40);
+            
         }
+        */
+    }
+    /*siguienteCarta: devuelve la siguiente carta que está en la baraja, cuando no haya más
+    o se haya llegado al final, se indica al usuario que no hay más cartas. */
+    public String siguienteCarta(){
+        if (this.posicion==0){
+            this.posicion++;
+            return this.cartas[0];
+            
+        }
+        else{
+            this.posicion++;
+            return this.cartas[this.posicion];
         }
         
     }
-    //Setter
-    public void setBarajaCompleta(){
-        this.barajaCompleta=barajaCompleta;
-    }
-    //Getter
-    public String getBarajaCompleta(){
-        return barajaCompleta;
-    }
-
-    
 
 
-    */
-//}
+}
+
+
     
