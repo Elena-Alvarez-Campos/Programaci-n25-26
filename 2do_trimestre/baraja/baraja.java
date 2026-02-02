@@ -51,15 +51,19 @@ public class baraja{
         if (this.posicion==0){
             this.posicion++;
             return this.cartas[0];
-            
+        }
+        else if(this.posicion>=40){
+            return "No hay más cartas";
         }
         else{
             this.posicion++;
             return this.cartas[this.posicion];
         }
-        
     }
-
+    /*cartasDisponibles: indica el número de cartas que aún puede repartir */
+    public int cartasDisponibles(){
+        return num_cartas-posicion;
+    }
 
 }
 

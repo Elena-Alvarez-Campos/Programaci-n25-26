@@ -5,7 +5,6 @@ public class App {
         carta carta1=new carta();
         carta1.cartaNueva();
         baraja baraja1=new baraja(carta1.cartaNueva());
-        System.out.println(baraja1);
 
         boolean programa=true;
         int opcion=0;
@@ -14,7 +13,7 @@ public class App {
                 "********************\n"+
                 "1.Barajar (no disponible)\n"+
                 "2.Siguiente carta\n"+
-                "3.Cartas disponibles(no disponible)\n"+
+                "3.Cartas disponibles\n"+
                 "4.Dar cartas(no disponible)\n"+
                 "5.Cartas que salieron(no disponible)\n"+
                 "6.Cartas que no salieron(no disponible)\n"+
@@ -31,8 +30,7 @@ public class App {
                         System.out.println(baraja1.siguienteCarta());
                         break;
                     case 3:
-                        programa=false;
-                        
+                        System.out.println(baraja1.cartasDisponibles());
                         break;
                     case 4:
                         programa=false;

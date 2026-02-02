@@ -58,13 +58,4 @@ public class carta {
         return baraja;
         
     }
-    //barajar: cambia de posición todas las cartas aleatoriamente
-    public void barajar(){
-        int[] nuevoOrden = new int[40];
-        Random numAleatorio= new Random();
-
-        
-
-
-    }
 }
