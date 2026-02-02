@@ -49,7 +49,7 @@ public class App {
                         programa=false;
                         break;
                     default:
-                        System.out.println("Escribe un número de la lista");
+                        JOptionPane.showMessageDialog(null, "Escoge una opción compatible");
                         break;
                 }
         }
