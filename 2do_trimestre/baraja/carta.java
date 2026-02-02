@@ -8,9 +8,9 @@ public class carta {
     public static final int Limite_carta_palo=12;
     
     //constructor
-    public carta(int numero, String palo){
-        this.numero=numero;
-        this.palo=palo;
+    public carta(){
+        this.numero=0;
+        this.palo="";
     }
     //seter
     public void setPalo(String palo){
@@ -29,26 +29,32 @@ public class carta {
     //Integrar en la baraja (no recomendado)
     //Método para que se añadan nuevas cartas
     public String cartaNueva(){
-        String paloActual="";
-        int carta_actual=0;
         String[] baraja = new String[40];
-        for(int x=0; x<4; x++){
-            paloActual=Palos[x];
-            for(int y=0; y<Limite_carta_palo; y++){
-                if(y==8||y==9){
-                    continue;
-                }
-                baraja[i+y]=(y+1)+paloActual;
+        int contadorPalos=0;
+        int contadorNum=0;
+        int numCarta=1;
+        for(int i=0; i<40; i++){
+            baraja[i]=Palos[contadorPalos];
+            contadorPalos++;
+            if(contadorPalos>=4){
+                contadorPalos=0;
             }
-
         }
-        return baraja[11];
+        for(int i=0; i<40; i++){
+            baraja[i]=numCarta+baraja[i];
+            contadorNum++;
+            if(contadorNum>=4 && numCarta!=7){
+                numCarta++;
+                contadorNum=0;
+            }
+            if(contadorNum>=4 && numCarta==7){
+                numCarta+=3;
+                contadorNum=0;
+            }
+            
+        }
+        return baraja[39];
         
-    }
-
-    public static void main(String[]args) throws Exception{
-        carta carta1=new carta(2, "oros");
-        System.out.println(carta1.cartaNueva());
     }
     
 }

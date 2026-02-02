@@ -1,4 +1,4 @@
-
+/*
 public class baraja{
     
     //atributos
@@ -31,7 +31,7 @@ public class baraja{
         baraja baraja1 = new baraja();
         System.out.println(baraja1.getCartas());
     }
-
+*/
     //Atributo
     //private String barajaCompleta;
     //Constructor
@@ -78,5 +78,5 @@ public class baraja{
 
 
     */
-}
+//}
     
