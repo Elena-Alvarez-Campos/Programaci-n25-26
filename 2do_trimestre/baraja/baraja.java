@@ -52,7 +52,7 @@ public class baraja{
             this.posicion++;
             return this.cartas[0];
         }
-        else if(this.posicion>=40){
+        else if(this.posicion>=39){
             return "No hay más cartas";
         }
         else{
@@ -63,6 +63,20 @@ public class baraja{
     /*cartasDisponibles: indica el número de cartas que aún puede repartir */
     public int cartasDisponibles(){
         return num_cartas-posicion;
+    }
+    /*darCartas: dado un número de cartas que nos pidan, le devolveremos ese número de
+    cartas (piensa que puedes devolver). En caso de que haya menos cartas que las
+    pedidas, no devolveremos nada pero debemos indicárselo al usuario. */
+    public void darCartas(int cartasPedidas){
+        if(cartasPedidas<this.cartasDisponibles()){
+            for(int i=0; i<cartasPedidas; i++){
+                this.posicion++;
+                System.out.println(this.cartas[posicion]);
+            }
+        }
+        else{
+            System.out.println("no hay suficientes cartas");
+        }
     }
 
 }

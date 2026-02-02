@@ -33,8 +33,9 @@ public class App {
                         System.out.println(baraja1.cartasDisponibles());
                         break;
                     case 4:
-                        programa=false;
-                        
+                        String texto=JOptionPane.showInputDialog("¿Cuantas cartas quieres dar?");
+                        int cartasDar=Integer.parseInt(texto);
+                        baraja1.darCartas(cartasDar);
                         break;
                     case 5:
                         programa=false;
