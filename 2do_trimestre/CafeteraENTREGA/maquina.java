@@ -13,7 +13,7 @@ public class maquina {
     private int mlAgua;
     //Constructor
     public maquina(ArrayList<cafe> cafes){
-        this.numeroSerie="";
+        this.numeroSerie="5816A";
         this.cafes=cafes;
         this.vasos=0;
         this.gCafe=0;
@@ -39,8 +39,23 @@ public class maquina {
     //Tener mínimo 1 vaso
     //Restar unidades a la máquina
     
-    public void pedirCafe(){
-        
+    public String pedirCafe(){
+        String listaCafes="     Menu     \n"+"********************\n";
+        for(int i=1; i<=this.cafes.size();i++){
+            listaCafes+=i+"."+this.cafes.get(i-1)+"\n";
+        }
+        boolean programa=true;
+        while(programa==true){
+            String menu=JOptionPane.showInputDialog(listaCafes);
+            int opcion=Integer.parseInt(menu)-1;
+            if(opcion>=this.cafes.size()||opcion<0){
+                JOptionPane.showMessageDialog(null, "No es una opción compatible");
+            }
+            else{
+                this.cafes.get(opcion);
+            }
+        }
+        return listaCafes;
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////// 

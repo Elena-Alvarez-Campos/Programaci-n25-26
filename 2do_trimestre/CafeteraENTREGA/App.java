@@ -18,7 +18,7 @@ public class App{
         while(programa==true){
             String menu=JOptionPane.showInputDialog("     Menu     \n"+
             "********************\n"+
-            "1.Pedir un café (no disponible)\n"+
+            "1.Pedir un café\n"+
             "2.Rellenar máquina \n"+
             "3.Crear nuevo café\n"+
             "4.Salir\n"+
@@ -26,7 +26,8 @@ public class App{
             opcion=Integer.parseInt(menu);
             switch (opcion) {
                 case 1:
-                    programa=false;
+                    System.out.println(maquina1.pedirCafe());
+                    //programa=false;
                     break;
                 case 2:
                     maquina1.rellenaMaquina();

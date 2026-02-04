@@ -14,8 +14,34 @@ public class cafe {
     
     @Override
     public String toString(){
-        return "EL nombre es "+nombre;
+        return nombre;
     }
+    //Setters
+    public void setNombre(String nombre){
+        this.nombre=nombre;
+    }
+    public void setgCafe(int gCafe){
+        this.gCafe=gCafe;
+    }
+    public void setgLeche(int gLeche){
+        this.gLeche=gLeche;
+    }
+    public void setgCacao(int gCacao){
+        this.gCacao=gCacao;
+    }
+    //Getters
 
+    public String getNombre(){
+        return nombre;
+    }
+    public int getgCafe(){
+        return gCafe;
+    }
+    public int getgLeche(){
+        return gLeche;
+    }
+    public int getgCacao(){
+        return gCacao;
+    }
 
 }
