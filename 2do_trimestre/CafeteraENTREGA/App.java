@@ -23,27 +23,32 @@ public class App{
             "3.Crear nuevo café\n"+
             "4.Salir\n"+
             "\n Selecciona una opción");
-            opcion=Integer.parseInt(menu);
-            switch (opcion) {
-                case 1:
-                    maquina1.pedirCafe();
-                    System.out.println(maquina1);
-                    break;
-                case 2:
-                    maquina1.rellenaMaquina();
-                    System.out.println(maquina1);
-                    break;
-                case 3:
-                    maquina1.cafes.add(maquina1.nuevoCafe());
-                    System.out.println(maquina1.cafes);
-                    break;
-                case 4:
-                    programa=false;
-                    break;
-                default:
-                    JOptionPane.showMessageDialog(null, "Escoge una opción compatible");
-                    break;
+            try{
+                opcion=Integer.parseInt(menu);
+                switch (opcion) {
+                    case 1:
+                        maquina1.pedirCafe();
+                        System.out.println(maquina1);
+                        break;
+                    case 2:
+                        maquina1.rellenaMaquina();
+                        System.out.println(maquina1);
+                        break;
+                    case 3:
+                        maquina1.cafes.add(maquina1.nuevoCafe());
+                        System.out.println(maquina1.cafes);
+                        break;
+                    case 4:
+                        programa=false;
+                        break;
+                    default:
+                        JOptionPane.showMessageDialog(null, "Escoge una opción compatible");
+                        break;
+                }
+            } catch (Exception e) {
+               JOptionPane.showMessageDialog(null, "Escoge una opción compatible");
             }
+            
             
         }
     }
