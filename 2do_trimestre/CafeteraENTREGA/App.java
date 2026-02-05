@@ -10,7 +10,7 @@ public class App{
         listaCafes.add(cafe1);
         maquina maquina1=new maquina(listaCafes);
         maquina1.cafes.add(cafe2);
-        System.out.println(maquina1.getCafes());
+        System.out.println(maquina1);
         //Menú
         
         boolean programa=true;
@@ -26,8 +26,8 @@ public class App{
             opcion=Integer.parseInt(menu);
             switch (opcion) {
                 case 1:
-                    System.out.println(maquina1.pedirCafe());
-                    //programa=false;
+                    maquina1.pedirCafe();
+                    System.out.println(maquina1);
                     break;
                 case 2:
                     maquina1.rellenaMaquina();

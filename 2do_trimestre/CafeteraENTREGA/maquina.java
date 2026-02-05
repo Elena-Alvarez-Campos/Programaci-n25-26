@@ -53,9 +53,40 @@ public class maquina {
             }
             else{
                 this.cafes.get(opcion);
+                programa=false;
+                System.out.println(this.cafes.get(opcion).getNombre());
+                //comprueba vasos
+                if(this.vasos<=0){
+                    JOptionPane.showMessageDialog(null, "No hay vasos");
+                }
+                //comprueba café
+                else if(this.gCafe<this.cafes.get(opcion).getgCafe()){
+                    JOptionPane.showMessageDialog(null, "No suficientes gramos de café");
+                }
+                //comprueba leche
+                else if(this.gLeche<this.cafes.get(opcion).getgLeche()){
+                    JOptionPane.showMessageDialog(null, "No suficientes ggramos de leche en polvo");
+                }
+                //comprueba cacao
+                else if(this.gCacao<this.cafes.get(opcion).getgCacao()){
+                    JOptionPane.showMessageDialog(null, "No suficientes gramos de cacao");
+                }
+                //comprueba agua
+                else if(this.mlAgua<this.cafes.get(opcion).getgCafe()+this.cafes.get(opcion).getgLeche()+this.cafes.get(opcion).getgCacao()){
+                    JOptionPane.showMessageDialog(null, "No hay suficiente agua en la máquina");
+                }
+                else{
+                    this.gCafe-=this.cafes.get(opcion).getgCafe();
+                    this.gLeche-=this.cafes.get(opcion).getgLeche();
+                    this.gCacao-=this.cafes.get(opcion).getgCacao();
+                    this.mlAgua-=this.cafes.get(opcion).getgCafe()+this.cafes.get(opcion).getgLeche()+this.cafes.get(opcion).getgCacao();
+                    this.vasos-=1;
+                    JOptionPane.showMessageDialog(null, "Café servido");
+                }
             }
         }
-        return listaCafes;
+        
+        return this.toString();
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////// 
