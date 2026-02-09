@@ -125,8 +125,8 @@ public class maquina {
             "\n Selecciona una opción");
             try{
             opcion=Integer.parseInt(menu);
-            }
-            catch(Exception e){}//Siempre le va a decir que escoja una opción compatible si hay un error
+            
+            
             boolean fin=true;
             int recarga=0;
             int ingrediente=0;
@@ -202,6 +202,9 @@ public class maquina {
                         }
                         
                     }
+                } catch(Exception e){
+                    JOptionPane.showMessageDialog(null, "Escoge un valor compatible");
+                }
         }
     }
 
