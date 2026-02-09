@@ -21,21 +21,21 @@ public class maquina {
         this.gCacao=0;
         this.mlAgua=0;
     }
-    //Setter cafes
+    //Setters
     public void setCafes(ArrayList<cafe> cafes){
         this.cafes=cafes;
     }
     public void setNumSerie(String numeroSerie){
         this.numeroSerie=numeroSerie;
     }
-    //getter
+    //getters
     public ArrayList<cafe> getCafes(){
         return cafes;
     }
     public String getNumSerie(){
         return numeroSerie;
     }
-    @Override
+    @Override//Se usa para comprobar que la máquina está recargada correctamente
     public String toString(){
         return"Vasos:"+vasos+" Café:"+gCafe+ " Leche:"+gLeche+" Cacao:"+gCacao+" Agua:"+mlAgua;
     }
@@ -47,25 +47,28 @@ public class maquina {
     
     public String pedirCafe(){
         String listaCafes="     Menu     \n"+"********************\n";
+        //añadir al menú la lista de cafés
         for(int i=1; i<=this.cafes.size();i++){
             listaCafes+=i+"."+this.cafes.get(i-1)+"\n";
         }
+        //añadir la salida
         listaCafes+=this.cafes.size()+1+".Salir";
         boolean programa=true;
         while(programa==true){
             String menu=JOptionPane.showInputDialog(listaCafes);
             try{
+                //El número de la elección es +1 que la posición del array
                 int opcion=Integer.parseInt(menu)-1;
                 if(opcion==this.cafes.size()){
-                    programa=false;
+                    programa=false;//Salida
                 }
-                else if(opcion>this.cafes.size()||opcion<0){
+                else if(opcion>this.cafes.size()||opcion<0){//si no es un número de la lista
                     JOptionPane.showMessageDialog(null, "No es una opción compatible");
                 }
-                else{
+                else{//Si es un número de la lista
                     this.cafes.get(opcion);
                     programa=false;
-                    System.out.println(this.cafes.get(opcion).getNombre());
+                    //System.out.println(this.cafes.get(opcion).getNombre()); //Muestra el tipo de café
                     //comprueba vasos
                     if(this.vasos<=0){
                         JOptionPane.showMessageDialog(null, "No hay vasos");
@@ -88,6 +91,7 @@ public class maquina {
                     }
                     //máquina tiene los ingredientes necesarios
                     else{
+                        //restar ingredientes gastados
                         this.gCafe-=this.cafes.get(opcion).getgCafe();
                         this.gLeche-=this.cafes.get(opcion).getgLeche();
                         this.gCacao-=this.cafes.get(opcion).getgCacao();
@@ -126,11 +130,10 @@ public class maquina {
             try{
             opcion=Integer.parseInt(menu);
             
-            
             boolean fin=true;
             int recarga=0;
             int ingrediente=0;
-            switch (opcion) {
+            switch (opcion) {//determinar que ingrediente es la opción
                 case 1:
                     ingrediente=this.vasos;
                     break;
@@ -146,27 +149,30 @@ public class maquina {
                 case 5:
                     ingrediente=this.mlAgua;
                     break;
-                case 6:
+                case 6://Salida
                     programa=false;
-                    fin=false;
+                    fin=false;//No se ejecuta el segundo programa
                     break;
-                default:
+                default://valor incorrecto
                     JOptionPane.showMessageDialog(null, "Escoge una opción compatible");
                     fin=false;
                     break;
             }
-            while(fin==true){
+            while(fin==true){//Se ejecuta este segundo programa hasta que la opción sea compatible
                         if(ingrediente==limite){
                             JOptionPane.showMessageDialog(null, "Ya no se pueden añadir más");
                             fin=false;
                         }
                         else{
                             try{
-                                String texto=JOptionPane.showInputDialog("Solo se pueden añadir números enteros\n"+"¿Cuanto quieres añadir?\n"+"Max total:1000\n"+"Cantidad actualmente:"+ingrediente);
+                                String texto=JOptionPane.showInputDialog("Solo se pueden añadir números enteros\n"+
+                                "¿Cuanto quieres añadir?\n"+
+                                "Max total:"+limite+"\n"+
+                                "Cantidad actualmente:"+ingrediente);
                                 recarga=Integer.parseInt(texto);
                             
                                 if(recarga+ingrediente<=limite && recarga>0){
-                                    //this.ingrediente=ingrediente+recarga;
+                                    //añadir la recarga proporcionada al ingrediente correspondiente
                                     switch (opcion) {
                                         case 1:
                                             this.vasos=ingrediente+recarga;
@@ -189,7 +195,7 @@ public class maquina {
                                     JOptionPane.showMessageDialog(null, "Se han recargado correctamente");
                                     fin=false;
                                 }
-                                else if(recarga==0){
+                                else if(recarga==0){//Para poder salir sin tener que recargar
                                     JOptionPane.showMessageDialog(null, "No se ha recargado");
                                     fin=false;
                                 }
@@ -212,13 +218,14 @@ public class maquina {
     //////////////////////////////////////////////////////////////////////////////////////////////
     //3. Nuevo café
     public cafe nuevoCafe(){
+        //valores del nuevo café
         int cantidadNecesariaCafe=0;
         int cantidadNecesariaCacao=0;
         int cantidadNecesariaLeche=0;
         String nombreCafe="";
-        boolean adecuado=false;
+        boolean adecuado=false;//comprobar
         nombreCafe=JOptionPane.showInputDialog("Introduce el nombre del nuevo café");
-        while(adecuado==false){
+        while(adecuado==false){//para café
             String texto=JOptionPane.showInputDialog("Introduce cuantos gramos de café se necesitan");
             try{
                 cantidadNecesariaCafe=Integer.parseInt(texto);
@@ -233,7 +240,7 @@ public class maquina {
             }      
         }
         adecuado=false;
-        while(adecuado==false){
+        while(adecuado==false){//para cacao
             String texto=JOptionPane.showInputDialog("Introduce cuantos gramos de cacao se necesitan");
             try{
                 cantidadNecesariaCacao=Integer.parseInt(texto);
@@ -248,12 +255,13 @@ public class maquina {
             } 
         }
         adecuado=false;
-        while(adecuado==false){
+        while(adecuado==false){//para leche
             String texto=JOptionPane.showInputDialog("Introduce cuantos gramos de leche se necesitan");
             try{
                 cantidadNecesariaLeche=Integer.parseInt(texto);
                 if(cantidadNecesariaLeche>=0){
                     adecuado=true;
+                    JOptionPane.showMessageDialog(null, "Café añadido");
                 }
                 else{
                     JOptionPane.showMessageDialog(null, "Escoge una opción compatible");    
@@ -262,8 +270,9 @@ public class maquina {
                 JOptionPane.showMessageDialog(null, "Escoge una opción compatible");
             } 
         }
+        //determinar el nuevo café
         cafe CafeNuevo=new cafe(nombreCafe, cantidadNecesariaCafe, cantidadNecesariaLeche, cantidadNecesariaCacao);
-        return CafeNuevo;
+        return CafeNuevo;//devuelve un café nuevo para meterlo en la lista
         
     }
 

@@ -4,15 +4,20 @@ import javax.swing.JOptionPane;
 
 public class App{
     public static void main(String[]args) throws Exception{
+        //cafés ejemplo
         cafe cafe1=new cafe("Solo",4,0,0);
         cafe cafe2=new cafe("Con Leche",4,8,0);
+
+        //crear un array en el que se van a meter los cafés
         ArrayList<cafe> listaCafes=new ArrayList<cafe>();
+        //Añadir el café a la lista
         listaCafes.add(cafe1);
+        //Determinar que la máquina e incorporar la lista de cafés por defecto
         maquina maquina1=new maquina(listaCafes);
+        //Otra forma de añadir cafés a esta lista es añadiéndolo a la máquina después
         maquina1.cafes.add(cafe2);
-        System.out.println(maquina1);
+
         //Menú
-        
         boolean programa=true;
         int opcion=0;
         while(programa==true){
@@ -23,20 +28,20 @@ public class App{
             "3.Crear nuevo café\n"+
             "4.Salir\n"+
             "\n Selecciona una opción");
-            try{
+            try{//Seguir con el programa si el carácter que el ususario ha escrito es un número
                 opcion=Integer.parseInt(menu);
                 switch (opcion) {
                     case 1:
                         maquina1.pedirCafe();
-                        System.out.println(maquina1);
+                        //System.out.println(maquina1); //Imprime los ingredientes que hay en la máquina
                         break;
                     case 2:
                         maquina1.rellenaMaquina();
-                        System.out.println(maquina1);
+                        //System.out.println(maquina1); //Ingredientes máqina
                         break;
                     case 3:
-                        maquina1.cafes.add(maquina1.nuevoCafe());
-                        System.out.println(maquina1.cafes);
+                        maquina1.cafes.add(maquina1.nuevoCafe());//se añade el café nuevo a la lista
+                        //System.out.println(maquina1.cafes); //Imprime los cafés que hay en la máquina
                         break;
                     case 4:
                         programa=false;
@@ -45,6 +50,7 @@ public class App{
                         JOptionPane.showMessageDialog(null, "Escoge una opción compatible");
                         break;
                 }
+              //Detectar otros elementos que no son números e imprimri un mensaje de error
             } catch (Exception e) {
                JOptionPane.showMessageDialog(null, "Escoge una opción compatible");
             }
