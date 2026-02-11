@@ -1,0 +1,42 @@
+[
+    {
+        "nombre":"Pocion de energia",
+        "categoria":"recuperacion",
+        "contenedor":"frasco",
+        "usos":5,
+        "elemento":"electricidad",
+        "energia":12
+    },
+    {
+        "nombre":"Pocion de fuego",
+        "categoria":"recuperacion",
+        "contenedor":"frasco",
+        "usos":5,
+        "elemento":"fuego",
+        "energia":12
+    },
+    {
+        "nombre":"Antidoto",
+        "categoria":"cura",
+        "contenedor":"unidad",
+        "usos":1,
+        "elemento":null,
+        "energia":4
+    },
+    {
+        "nombre":"Piedra hielo",
+        "categoria":"mejora",
+        "contenedor":"unidad",
+        "usos":1,
+        "elemento":"hielo",
+        "energia":0
+    },
+    {
+        "nombre":"Pocion general",
+        "categoria":"recuperacion",
+        "contenedor":"frasco",
+        "usos":2,
+        "elemento":null,
+        "energia":20
+    }
+]
