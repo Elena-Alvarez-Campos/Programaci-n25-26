@@ -20,8 +20,26 @@ class InventarioJugador:
                 cumple.append(cada_objeto["nombre"])
                 cumple.append(cada_objeto["energia"])
         return cumple
+    #Utilizar un objeto
+    def usarObjeto(cls,nombre,elemento=None):
+        encontrado=False
+        eliminar=False
+        numEliminar=0
+        for cada_objeto in cls.inventario:
+            if nombre==cada_objeto["nombre"]:
+                encontrado=True
+                cada_objeto["usos"]=cada_objeto["usos"]-1
+                if cada_objeto["usos"]==0:
+                    eliminar=True
+                    numEliminar=cls.inventario.index(cada_objeto)
+        if eliminar==True:
+            cls.inventario.remove(numEliminar)
+        return encontrado
+
     
 #INventario que va a ser el json
 InventarioJugador1=InventarioJugador(invent)
 
 print(f"{InventarioJugador1.buscarPorEnergia(5)}")
+print(f"{InventarioJugador1.usarObjeto("Pocion de energia",None)}")
+print(f"{InventarioJugador1.inventario[0]["nombre"]} {InventarioJugador1.inventario[0]["usos"]}")
