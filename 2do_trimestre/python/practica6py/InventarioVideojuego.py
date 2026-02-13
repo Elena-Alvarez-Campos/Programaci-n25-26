@@ -67,8 +67,33 @@ class InventarioJugador:
             usosTotal+=cada_objeto["usos"]
         return usosTotal
     #Estrategia de sobrecarga
+    def estrategiaSobrecarga(cls):
+        mayorCategoria=""
+        listaCatEnergia={}
+        listaCategorias={}
+        listaNomCAt=[]
+        mayorE=0
+        for cada_objeto in cls.inventario:
+            categoriaEncontrada=False
+            for cada_categotia in listaCategorias:
+                if cada_objeto["categoria"]==cada_categotia:
+                    categoriaEncontrada=True
+            if categoriaEncontrada==False:
+                listaCategorias[cada_objeto["categoria"]]=[]
+                listaCatEnergia[cada_objeto["categoria"]]=0
+                listaNomCAt.append(cada_objeto["categoria"])
+            listaCatEnergia[cada_objeto["categoria"]]+=cada_objeto["usos"]*cada_objeto["energia"]
+            listaCategorias[cada_objeto["categoria"]].append(cada_objeto)
+        posicion=0
+        posicionMayor=0
+        for cadaNum in listaCatEnergia.values():
+            if cadaNum>mayorE:
+                mayorE=cadaNum
+                posicionMayor=posicion
+            posicion+=1
+        return listaCategorias[listaNomCAt[posicionMayor]]
     
-#INventario que va a ser el json
+#Inventario que va a ser el json
 InventarioJugador1=InventarioJugador(invent)
 
 print(f"Ej1: {InventarioJugador1.buscarPorEnergia(5)}")
@@ -76,4 +101,5 @@ print(f"Ej2: {InventarioJugador1.usarObjeto("Pocion de fuego","fuego")}")
 #Comprobar funcionaminto del ejercicio 2
 #print(f"{InventarioJugador1.inventario[1]["nombre"]}:{InventarioJugador1.inventario[1]["usos"]}")
 print(f"Ej3: {InventarioJugador1.consultarUsos(None,"recuperacion",None)}")
+print(f"Ej4: {InventarioJugador1.estrategiaSobrecarga()}")
 
