@@ -24,22 +24,56 @@ class InventarioJugador:
     def usarObjeto(cls,nombre,elemento=None):
         encontrado=False
         eliminar=False
+        coincidenciaElemento=False
         numEliminar=0
         for cada_objeto in cls.inventario:
-            if nombre==cada_objeto["nombre"]:
-                encontrado=True
-                cada_objeto["usos"]=cada_objeto["usos"]-1
-                if cada_objeto["usos"]==0:
-                    eliminar=True
-                    numEliminar=cls.inventario.index(cada_objeto)
-        if eliminar==True:
-            cls.inventario.remove(numEliminar)
+            if nombre==cada_objeto["nombre"]:#Si se escuntra el nombre del objeto:
+                if cada_objeto["elemento"]==elemento:#Si coincide con el elemento buscado
+                    coincidenciaElemento=True
+                if elemento==None:#Si el elemento es nuso
+                    coincidenciaElemento=True
+                if coincidenciaElemento==True:#Si coinciden los elementos o si no hay elemento que tener en cuenta
+                    encontrado=True
+                    #Para prevenir errores, he puesto qeu si hay una cantidad igual o inferior a 0, no se encuentra ni se usa y se borra de la lista
+                    if cada_objeto["usos"]<=0:
+                        encontrado=False
+                        eliminar=True
+                    else:#Si la cantidad es correcta se resta
+                        cada_objeto["usos"]=cada_objeto["usos"]-1
+                        if cada_objeto["usos"]==0:#En caso de que se agote, se determina que se elimina de la lista
+                            eliminar=True
+                            numEliminar=cls.inventario.index(cada_objeto)#Se guarda su posición para eliminarlo
+        if eliminar==True:#Si hay que eliminar algo de la lista se elimina mediante su posición
+            del cls.inventario[numEliminar]
+            #del sirve para eliminar un un miemvro del array sabiendo su posición
         return encontrado
-
+    
+    #Consultar usos disponibles
+    def consultarUsos(cls,nombre=None,categoria=None,elemento=None):
+        usosTotal=0
+        for cada_objeto in cls.inventario:
+            #Si la opción es None, no lo busca y pasa de ella
+            #Si tiene la opción y no coincide, ya no sigue en ese objeto y busca otro
+            if nombre!=None:
+                if nombre!=cada_objeto["nombre"]:
+                    continue
+            if categoria!=None:
+                if categoria!=cada_objeto["categoria"]:
+                    continue
+            if elemento!=None:
+                if elemento!=cada_objeto["elemento"]:
+                    continue
+            #Si el objeto ha cumplido con todas las condiciones, se le suman sus usos al total
+            usosTotal+=cada_objeto["usos"]
+        return usosTotal
+    #Estrategia de sobrecarga
     
 #INventario que va a ser el json
 InventarioJugador1=InventarioJugador(invent)
 
-print(f"{InventarioJugador1.buscarPorEnergia(5)}")
-print(f"{InventarioJugador1.usarObjeto("Pocion de energia",None)}")
-print(f"{InventarioJugador1.inventario[0]["nombre"]} {InventarioJugador1.inventario[0]["usos"]}")
+print(f"Ej1: {InventarioJugador1.buscarPorEnergia(5)}")
+print(f"Ej2: {InventarioJugador1.usarObjeto("Pocion de fuego","fuego")}")
+#Comprobar funcionaminto del ejercicio 2
+#print(f"{InventarioJugador1.inventario[1]["nombre"]}:{InventarioJugador1.inventario[1]["usos"]}")
+print(f"Ej3: {InventarioJugador1.consultarUsos(None,"recuperacion",None)}")
+
