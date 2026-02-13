@@ -2,12 +2,22 @@ import json
 with open("inventario.json","r") as j:
     invent=json.load(j)
 
+class ObjetoInventario:
+    #Atributo
+    inventario=[]
+    #Constructor
+    def __init__(self):
+        self.inventario=invent
+    #Equivalente a Override
+    def __str__(self):
+        return f"Iventario:{self.inventario}"
+inventarioFinal=ObjetoInventario()
 class InventarioJugador:
     #Atributo
     inventario=[]
     #Constructor
-    def __init__(self,inventario):
-        self.inventario=inventario
+    def __init__(self):
+        self.inventario=inventarioFinal.inventario
     #Equivalente a Override
     def __str__(self):
         return f"Iventario:{self.inventario}"
@@ -68,7 +78,6 @@ class InventarioJugador:
         return usosTotal
     #Estrategia de sobrecarga
     def estrategiaSobrecarga(cls):
-        mayorCategoria=""
         listaCatEnergia={}
         listaCategorias={}
         listaNomCAt=[]
@@ -94,8 +103,7 @@ class InventarioJugador:
         return listaCategorias[listaNomCAt[posicionMayor]]
     
 #Inventario que va a ser el json
-InventarioJugador1=InventarioJugador(invent)
-
+InventarioJugador1=InventarioJugador()
 print(f"Ej1: {InventarioJugador1.buscarPorEnergia(5)}")
 print(f"Ej2: {InventarioJugador1.usarObjeto("Pocion de fuego","fuego")}")
 #Comprobar funcionaminto del ejercicio 2
