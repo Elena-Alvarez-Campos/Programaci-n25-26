@@ -1,0 +1,19 @@
+{
+  "name": "ejercicio1_express",
+  "version": "1.0.0",
+  "description": "Primer ejercicio con exxpres de páctica",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "express",
+    "ejercico",
+    "ejercicio1"
+  ],
+  "author": "Elena Álvarez",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}

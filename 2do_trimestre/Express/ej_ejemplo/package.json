@@ -1,0 +1,19 @@
+{
+  "name": "servidorexpress",
+  "version": "1.0.0",
+  "description": "Es un ejercicio de ejemplo para express",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "ejemplo",
+    "npm",
+    "express"
+  ],
+  "author": "elena alvarez",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
