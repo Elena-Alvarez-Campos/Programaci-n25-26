@@ -4,12 +4,14 @@ public class cafe {
     private int gCafe;
     private int gLeche;
     private int gCacao;
+    private int gAzucar;
     //constructor
-    public cafe(String nombre, int gCafe, int gLeche, int gCacao){
+    public cafe(String nombre, int gCafe, int gLeche, int gCacao, int gAzucar){
         this.nombre=nombre;
         this.gCafe=gCafe;
         this.gLeche=gLeche;
         this.gCacao=gCacao;
+        this.gAzucar=gAzucar;
     }
     
     @Override
@@ -29,6 +31,9 @@ public class cafe {
     public void setgCacao(int gCacao){
         this.gCacao=gCacao;
     }
+    public void setgAzucar(int gAzucar){
+        this.gAzucar=gAzucar;
+    }
     //Getters
 
     public String getNombre(){
@@ -42,6 +47,9 @@ public class cafe {
     }
     public int getgCacao(){
         return gCacao;
+    }
+    public int getgAzucar(){
+        return gAzucar;
     }
 
 }
