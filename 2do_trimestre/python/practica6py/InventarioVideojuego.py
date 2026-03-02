@@ -1,24 +1,22 @@
-import json
+import json #Importar el json 
 with open("inventario.json","r") as j:
-    invent=json.load(j)
-
+    invent=json.load(j)#se crea una variable nueva llamada invent (de inventario)
+#Se trabaja con la nueva variable
+#invent es un array de objetos
 class ObjetoInventario:
     #Atributo
     inventario=[]
     #Constructor
     def __init__(self):
         self.inventario=invent
-    #Equivalente a Override
-    def __str__(self):
-        return f"Iventario:{self.inventario}"
-inventarioFinal=ObjetoInventario()
+inventarioFinal=ObjetoInventario()#El inventario final es la clase anterior 
 class InventarioJugador:
     #Atributo
     inventario=[]
     #Constructor
     def __init__(self):
         self.inventario=inventarioFinal.inventario
-    #Equivalente a Override
+    #Parecido al Override de Java
     def __str__(self):
         return f"Iventario:{self.inventario}"
     
