@@ -5,8 +5,8 @@ import javax.swing.JOptionPane;
 public class App{
     public static void main(String[]args) throws Exception{
         //cafés ejemplo
-        cafe cafe1=new cafe("Solo",4,0,0);
-        cafe cafe2=new cafe("Con Leche",4,8,0);
+        cafe cafe1=new cafe("Solo",4,0,0,2);
+        cafe cafe2=new cafe("Con Leche",4,8,0,8);
 
         //crear un array en el que se van a meter los cafés
         ArrayList<cafe> listaCafes=new ArrayList<cafe>();

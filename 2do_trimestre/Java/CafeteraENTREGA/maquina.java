@@ -11,6 +11,7 @@ public class maquina {
     private int gLeche;
     private int gCacao;
     private int mlAgua;
+    private int gAzucar;
     //Constructor
     public maquina(ArrayList<cafe> cafes){
         this.numeroSerie="5816A";
@@ -20,6 +21,7 @@ public class maquina {
         this.gLeche=0;
         this.gCacao=0;
         this.mlAgua=0;
+        this.gAzucar=0;
     }
     //Setters
     public void setCafes(ArrayList<cafe> cafes){
@@ -28,6 +30,9 @@ public class maquina {
     public void setNumSerie(String numeroSerie){
         this.numeroSerie=numeroSerie;
     }
+    public void setgAzucar(int gAzucar){
+        this.gAzucar=gAzucar;
+    }
     //getters
     public ArrayList<cafe> getCafes(){
         return cafes;
@@ -35,9 +40,12 @@ public class maquina {
     public String getNumSerie(){
         return numeroSerie;
     }
+    public int getgAzucar(int gAzucar){
+        return gAzucar;
+    }
     @Override//Se usa para comprobar que la máquina está recargada correctamente
     public String toString(){
-        return"Vasos:"+vasos+" Café:"+gCafe+ " Leche:"+gLeche+" Cacao:"+gCacao+" Agua:"+mlAgua;
+        return"Vasos:"+vasos+" Café:"+gCafe+ " Leche:"+gLeche+" Cacao:"+gCacao+" Agua:"+mlAgua+" Azucar:"+gAzucar;
     }
     //1.Pedir café
     //Mostrar cafés lista (seleccionar 1)
@@ -89,13 +97,18 @@ public class maquina {
                     else if(this.mlAgua<this.cafes.get(opcion).getgCafe()+this.cafes.get(opcion).getgLeche()+this.cafes.get(opcion).getgCacao()){
                         JOptionPane.showMessageDialog(null, "No hay suficiente agua en la máquina");
                     }
+                    //comprueba azucar
+                    else if(this.gAzucar<this.cafes.get(opcion).getgAzucar()){
+                        JOptionPane.showMessageDialog(null, "No hay suficiente gramos de azucar en la máquina");
+                    }
                     //máquina tiene los ingredientes necesarios
                     else{
                         //restar ingredientes gastados
                         this.gCafe-=this.cafes.get(opcion).getgCafe();
                         this.gLeche-=this.cafes.get(opcion).getgLeche();
                         this.gCacao-=this.cafes.get(opcion).getgCacao();
-                        this.mlAgua-=this.cafes.get(opcion).getgCafe()+this.cafes.get(opcion).getgLeche()+this.cafes.get(opcion).getgCacao();
+                        this.gAzucar-=this.cafes.get(opcion).getgAzucar();
+                        this.mlAgua-=this.cafes.get(opcion).getgCafe()+this.cafes.get(opcion).getgLeche()+this.cafes.get(opcion).getgCacao()+this.cafes.get(opcion).getgAzucar();
                         this.vasos-=1;
                         JOptionPane.showMessageDialog(null, "Café servido");
                     }
@@ -125,7 +138,8 @@ public class maquina {
             "3.Leche\n"+
             "4.Cacao\n"+
             "5.Agua\n"+
-            "6.Salir\n"+
+            "6.Azucar\n"+
+            "7.Salir"+
             "\n Selecciona una opción");
             try{
             opcion=Integer.parseInt(menu);
@@ -149,7 +163,10 @@ public class maquina {
                 case 5:
                     ingrediente=this.mlAgua;
                     break;
-                case 6://Salida
+                case 6:
+                    ingrediente=this.gAzucar;
+                    break;
+                case 7://Salida
                     programa=false;
                     fin=false;//No se ejecuta el segundo programa
                     break;
@@ -189,6 +206,8 @@ public class maquina {
                                         case 5:
                                             this.mlAgua=ingrediente+recarga;
                                             break;
+                                        case 6:
+                                            this.gAzucar=ingrediente+recarga;
                                         default:
                                             break;
                                     }
@@ -222,6 +241,7 @@ public class maquina {
         int cantidadNecesariaCafe=0;
         int cantidadNecesariaCacao=0;
         int cantidadNecesariaLeche=0;
+        int cantidadNecesariaAzucar=0;
         String nombreCafe="";
         boolean adecuado=false;//comprobar
         nombreCafe=JOptionPane.showInputDialog("Introduce el nombre del nuevo café");
@@ -270,8 +290,23 @@ public class maquina {
                 JOptionPane.showMessageDialog(null, "Escoge una opción compatible");
             } 
         }
+        adecuado=false;
+        while(adecuado==false){//para azucar
+            String texto=JOptionPane.showInputDialog("Introduce cuantos gramos de azucar se necesitan");
+            try{
+                cantidadNecesariaAzucar=Integer.parseInt(texto);
+                if(cantidadNecesariaAzucar>=0){
+                    adecuado=true;
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "Escoge una opción compatible");    
+                }
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(null, "Escoge una opción compatible");
+            } 
+        }
         //determinar el nuevo café
-        cafe CafeNuevo=new cafe(nombreCafe, cantidadNecesariaCafe, cantidadNecesariaLeche, cantidadNecesariaCacao);
+        cafe CafeNuevo=new cafe(nombreCafe, cantidadNecesariaCafe, cantidadNecesariaLeche, cantidadNecesariaCacao, cantidadNecesariaAzucar);
         return CafeNuevo;//devuelve un café nuevo para meterlo en la lista
         
     }
