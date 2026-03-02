@@ -10,8 +10,17 @@ app.use(express.json());
 //urlencoded([options]) :Propiedad que permite recibir más de 1 elemento
 //Le decimos que codifique las url, con el modo extendido para recibir query strings , lo que nos permite recibir objetos jerárquicos
 app.use(express.urlencoded({extended:true}));
+
+//importar modulos de rutas
+const reqroutes=require ('./routes/req');
+
+//montamos las rutas
+app.use ('/req', reqroutes);
+
+
 //req: requiere
 //res: respuesta
+
 app.get('/req',(req, res)=>{
     console.log("Recibido request",req.query);
     res.json({status:"OK"});
@@ -66,30 +75,42 @@ let lista={
             {nombre:'Botella de Fernet por 1 litro',precio:220}
         ]
     };
-
+//GET
+//localhost:3000/api/products?precio=200
 app.get('/api/products', (req, res)=>{
     listaItems=[];
-    if(req.query===undefined){
-        listaItems=lista.items;
+    if(req.query!==Number){
+        console.log("No se ha filtrado");
+        for(let cada_objeto of lista.items){
+            listaItems.push(cada_objeto);
+        }
     }
     else{
+        console.log("Se ha filtrado");
         for(let cada_objeto of lista.items){
             if(cada_objeto.precio<=req.query.precio){
                 listaItems.push(cada_objeto);
             }
         }
-        res.json({
-            descripcion:"productos",
-            items:[listaItems]
-        })
     }
+    res.json({
+        descripcion:"productos",
+        items:[listaItems]
+    })
+    
 });
 
 //POST
 app.post('/api/products', (req, res)=>{
-    lista.items.push(req.body)
-    console.log("Se ha añadido producto nuevo: ");
-    res.json(lista);
+    if(req.body==null){
+        console.log("No se ha añadido nada");
+        res.json(lista);
+    }
+    else{
+        lista.items.push(req.body)
+        console.log("Se ha añadido producto nuevo");
+        res.json(lista);
+    }
 })
 
 //decirle ala instancia por que puerto tiene que recibir las
