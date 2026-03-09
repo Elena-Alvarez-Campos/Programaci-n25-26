@@ -10,40 +10,57 @@ let listaPelis = JSON.parse(pelisString);//determina que esta variable es el jso
 
 //GET*******************************************
 router.get('/',(req,res)=>{
-    res.json(listaPelis);
+    try{
+        res.json(listaPelis);//Devuelve la lista de pelis
+    } catch(error){
+        conaole.log(error)
+        res.send("Se ha producido un error");
+    }
 });
 
-//POST***************************************
+//POST******************************************
 router.post('/',(req,res)=>{
-    const nuevoproducto={id:Date.now(),...req.body}
-    listaPelis.push(nuevoproducto);
-    res.json(listaPelis);
-    fs.writeFileSync("./pelis.json", JSON.stringify(listaPelis));
+    const nuevoproducto={id:Date.now(),...req.body}//crea una peli nueva con ID
+    listaPelis.push(nuevoproducto);//Se añade la peli nueva a la lista
+    res.json(listaPelis);//Se manda la lista de pelis
+    fs.writeFileSync("./pelis.json", JSON.stringify(listaPelis));//Se actualiza el JSON con la peli nueva
 });
 
-//PUT**************************************
+//PUT*******************************************
 router.put('/:id',(req,res,next)=>{
-    const id = parseInt(req.params.id);
+    try{
+    const id = parseInt(req.params.id);//Se parsea el id dado
     let peliEncontrada=false
     let posicion=0;
     for(let cada_peli of listaPelis){
         if(cada_peli.id==id){
-            //cada_peli=req.body;
+            //Si se encuentra la película se marca que se encontró y se sale del bucle
             peliEncontrada=true
             break;
         }
+        //Suma posiciones antes de pasar a la siguiente película
         posicion++
     }
+    //Si se encontró la peli hará cambios y si no se muestra un mensaje de que no se encontró
     if(peliEncontrada==true){
+        //El id va a seguir siendo el mismo, pero para el resto de datos van a ponerse los nuevos
         listaPelis[posicion]={id:id,...req.body};
+        console.log("Cambios aplicados")
     }
-    console.log("Peli encontrada: "+peliEncontrada)
-    res.json(listaPelis);
-    fs.writeFileSync("./pelis.json", JSON.stringify(listaPelis));
+    else{
+        console.log("Peli no encontrada")
+    }
+    res.json(listaPelis);//Se imprime la lista de pelis
+    fs.writeFileSync("./pelis.json", JSON.stringify(listaPelis));//Se actualizan los cambios al JSON
+    } catch(error){
+        conaole.log(error)
+        res.send("Se ha producido un error");
+    }
 });
 
-//DELETE**************************************
+//DELETE****************************************
 router.delete('/:id',(req,res)=>{
+    try{
     const id =parseInt(req.params.id);
     let posicion=0;
     peliEncontrada=false;
@@ -53,7 +70,7 @@ router.delete('/:id',(req,res)=>{
             break
         }
         posicion++
-    }
+    }//Si se encuentra la peli, se va a su posición y se elimina
     if(peliEncontrada==true){
         listaPelis.splice(posicion,1);
         console.log("Peli eliminada")
@@ -62,7 +79,11 @@ router.delete('/:id',(req,res)=>{
         console.log("Peli no encontrada")
     }
     res.json(listaPelis);
-    fs.writeFileSync("./pelis.json", JSON.stringify(listaPelis));
+    fs.writeFileSync("./pelis.json", JSON.stringify(listaPelis));//Se actualiza el JSON 
+    } catch(error){
+        conaole.log(error)
+        res.send("Se ha producido un error");
+    }
 });
 
 //Exportar módulo
