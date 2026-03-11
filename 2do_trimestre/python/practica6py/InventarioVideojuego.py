@@ -46,6 +46,7 @@ class InventarioJugador:
                     if cada_objeto["usos"]<=0:
                         encontrado=False
                         eliminar=True
+                        numEliminar=cls.inventario.index(cada_objeto)#Se guarda su posición para eliminarlo
                     else:#Si la cantidad es correcta se resta
                         cada_objeto["usos"]=cada_objeto["usos"]-1
                         if cada_objeto["usos"]==0:#En caso de que se agote, se determina que se elimina de la lista
