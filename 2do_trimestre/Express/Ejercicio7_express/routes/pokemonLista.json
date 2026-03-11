@@ -1,0 +1,39 @@
+[{
+    "nombre": "Pikachu",
+    "tipo": "electrico",
+    "vida": 100,
+    "defensa": 65,
+    "ataques": [
+        {
+            "nombre": "Impactrueno",
+        "potencia": 40
+        },
+        {
+            "nombre": "Chispazo",
+            "potencia": 20
+        },
+        {
+            "nombre": "Voltio Cruel",
+            "potencia": 60
+        }
+    ]
+},{
+    "nombre": "Charmander",
+    "tipo": "fuego",
+    "vida": 100,
+    "defensa": 65,
+    "ataques": [
+        {
+            "nombre": "lanzallamas",
+        "potencia": 60
+        },
+        {
+            "nombre": "ataque rapido",
+            "potencia": 10
+        },
+        {
+            "nombre": "ascuas",
+            "potencia": 35
+        }
+    ]
+}]

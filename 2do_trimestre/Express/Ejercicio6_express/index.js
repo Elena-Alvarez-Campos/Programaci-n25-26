@@ -14,3 +14,10 @@ app.listen(3000,()=>{
 } catch(error){
     console.log("Error, no se pudo encontrar")
 }
+
+//nodemon herramienta util que tienes que instalarlo en cada paquete
+//NO interesa que sea global
+
+//const datos=require("./datos.json")
+//trabajar como cualquier archivo que recuperamos
+//Para no volver a usar el fs
