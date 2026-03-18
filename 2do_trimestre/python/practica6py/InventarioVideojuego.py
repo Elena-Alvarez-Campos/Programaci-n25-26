@@ -54,7 +54,7 @@ class InventarioJugador:
                             numEliminar=cls.inventario.index(cada_objeto)#Se guarda su posición para eliminarlo
         if eliminar==True:#Si hay que eliminar algo de la lista se elimina mediante su posición
             del cls.inventario[numEliminar]
-            #del sirve para eliminar un un miemvro del array sabiendo su posición
+            #del sirve para eliminar un un miembro del array sabiendo su posición
         return encontrado
     
     #Consultar usos disponibles
@@ -104,9 +104,9 @@ class InventarioJugador:
 #Inventario que va a ser el json
 InventarioJugador1=InventarioJugador()
 print(f"Ej1: {InventarioJugador1.buscarPorEnergia(5)}")
-print(f"Ej2: {InventarioJugador1.usarObjeto("Pocion de fuego","fuego")}")
+print(f"Ej2: {InventarioJugador1.usarObjeto("Pocion de fuego","electricidad")}")
 #Comprobar funcionaminto del ejercicio 2
 #print(f"{InventarioJugador1.inventario[1]["nombre"]}:{InventarioJugador1.inventario[1]["usos"]}")
-print(f"Ej3: {InventarioJugador1.consultarUsos(None,"recuperacion",None)}")
+print(f"Ej3: {InventarioJugador1.consultarUsos(None,None,None)}")
 print(f"Ej4: {InventarioJugador1.estrategiaSobrecarga()}")
 
