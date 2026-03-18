@@ -5,6 +5,8 @@ const router=express.Router();
 const listapoke =require('./pokemonLista.json');
 //console.log(listapoke)
 
+//GET /lista**************************************************
+
 router.get('/lista',(req,res)=>{
     let pkmnLista={"pokemons":[]};
     for (let cada_pokemon of listapoke){
@@ -13,6 +15,8 @@ router.get('/lista',(req,res)=>{
     console.log(pkmnLista)
     res.json(pkmnLista)
 });
+
+//POST /nuevo************************************************
 
 router.post('/nuevo',(req,res)=>{
     //200: { "status": "ok" }
@@ -29,8 +33,6 @@ router.post('/nuevo',(req,res)=>{
         console.log("error")
         res.send("error")
     }
-    
-
 });
 
 

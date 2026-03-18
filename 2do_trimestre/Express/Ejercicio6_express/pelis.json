@@ -1,1 +1,4 @@
-[{"id":1,"titulo":"El señor de los anillos: La comunidad del anillo","año":2001},{"id":2,"titulo":"”Star Wars: El imperio contrataca","año":1980}]
+[
+    {"id":1,"titulo":"El señor de los anillos: La comunidad del anillo","año":2001}
+    ,{"id":2,"titulo":"”Star Wars: El imperio contrataca","año":1980}
+]

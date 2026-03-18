@@ -1,0 +1,11 @@
+[
+    {
+        "id":1,
+        "nombre":"canelones",
+        "precio":13.48
+    },{
+        "id":2,
+        "nombre":"tortilla",
+        "precio":7.8
+    }
+]
