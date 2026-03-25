@@ -5,15 +5,15 @@
     "defensa": 65,
     "ataques": [
         {
-            "nombre": "Impactrueno",
+            "nombre": "impactrueno",
         "potencia": 40
         },
         {
-            "nombre": "Chispazo",
+            "nombre": "chispazo",
             "potencia": 20
         },
         {
-            "nombre": "Voltio Cruel",
+            "nombre": "voltio cruel",
             "potencia": 60
         }
     ]
@@ -28,7 +28,7 @@
         "potencia": 60
         },
         {
-            "nombre": "ataque rapido",
+            "nombre": "ataque rápido",
             "potencia": 10
         },
         {
@@ -36,4 +36,43 @@
             "potencia": 35
         }
     ]
-}]
+},{
+    "nombre": "Bulbasaur",
+    "tipo": "planta",
+    "vida": 100,
+    "defensa": 65,
+    "ataques": [
+        {
+            "nombre": "hoja mágica",
+        "potencia": 60
+        },
+        {
+            "nombre": "sol radiante",
+            "potencia": 10
+        },
+        {
+            "nombre": "follaje",
+            "potencia": 35
+        }
+    ]
+},{
+    "nombre": "Sprigatito",
+    "tipo": "planta",
+    "vida": 100,
+    "defensa": 65,
+    "ataques": [
+        {
+            "nombre": "hoja mágica",
+        "potencia": 60
+        },
+        {
+            "nombre": "arañazo",
+            "potencia": 20
+        },
+        {
+            "nombre": "ataque rápido",
+            "potencia": 10
+        }
+    ]
+}
+]

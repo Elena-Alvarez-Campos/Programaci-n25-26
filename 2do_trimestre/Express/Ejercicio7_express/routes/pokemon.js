@@ -12,7 +12,7 @@ router.get('/lista',(req,res)=>{
     for (let cada_pokemon of listapoke){
         pkmnLista.pokemons.push(cada_pokemon.nombre)
     }
-    console.log(pkmnLista)
+    //console.log(pkmnLista)
     res.json(pkmnLista)
 });
 
