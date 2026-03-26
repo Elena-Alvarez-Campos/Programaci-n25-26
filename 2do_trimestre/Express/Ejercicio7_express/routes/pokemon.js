@@ -22,9 +22,14 @@ router.post('/nuevo',(req,res)=>{
     //200: { "status": "ok" }
     //400: "faltan datos necesarios"
     if(res.status(200)){
-        const nuevopkmn=/*{id:Date.now(),...*/req.body//}
-        listapoke.push(nuevopkmn);
+        //const nuevopkmn=/*{id:Date.now(),...*/req.body//}
+        try{
+        if(req.body.nombre==null||req.body.tipo==null||req.body.ataques==null||req.body.defensa==null||req.body.vida==null){
+            res.send("Faltan datos")
+        }
+        listapoke.push(req.body);
         res.json({"status":"ok"});
+        }catch(e){console.log("Datos insuficientes")}
     }
     else if(res.status(400)){
         res.send("faltan datos necesarios")
