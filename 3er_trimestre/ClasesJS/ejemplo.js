@@ -62,3 +62,11 @@ let rectangulo=class{
 }
 
 //Hacer los atributos privados, oblibando a usar setters y getters
+
+
+//********************************************
+//PROMESAS****************************************************
+//EVITAR QUE EL PROGRAMA SE BLOQUÉ
+//El programa se sigue ejecutando hasta tener el dato que necesita
+//por timepos (si no contesta en x tiuempo no se ejecuta)
+//por validaciones (si no es correxcto y tarda mucho tiempo cierra el programa)

@@ -1,0 +1,48 @@
+[
+    {
+        "id":1,
+        "tipo":"primero",
+        "nombre":"Ensalada china",
+        "precio":2.80
+    },{
+        "id":2,
+        "tipo":"primero",
+        "nombre":"Croquetas",
+        "precio":4.10
+    },{
+        "id":3,
+        "tipo":"primero",
+        "nombre":"Huevos rellenos",
+        "precio":3.50
+    },{
+        "id":4,
+        "tipo":"segundo",
+        "nombre":"Espaguetis a la boloñesa",
+        "precio":7.30
+    },{
+        "id":5,
+        "tipo":"segundo",
+        "nombre":"Secreto con patatas",
+        "precio":8.70
+    },{
+        "id":6,
+        "tipo":"segundo",
+        "nombre":"Sushi",
+        "precio":6.90
+    },{
+        "id":7,
+        "tipo":"postre",
+        "nombre":"Tiramisú",
+        "precio":2.80
+    },{
+        "id":8,
+        "tipo":"postre",
+        "nombre":"Tarta de queso",
+        "precio":3.50
+    },{
+        "id":9,
+        "tipo":"postre",
+        "nombre":"Helado",
+        "precio":1.5
+    }
+]
