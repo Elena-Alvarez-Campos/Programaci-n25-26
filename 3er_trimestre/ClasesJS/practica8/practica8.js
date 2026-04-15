@@ -1,10 +1,6 @@
 
 //Importar json
 const fs=require("fs");
-
-const cartaString = fs.readFileSync("./carta.json");
-let Carta = JSON.parse(cartaString);
-console.log(Carta)
 //clase mesa
 class Mesa{
     constructor(){
@@ -13,10 +9,14 @@ class Mesa{
     }
 }
 class Restaurante{
+    
     constructor(listaMesas,numMesas,carta,precioMenuDia){
         this.listaMesas=listaMesas
         this.numMesas=numMesas;
-        this.carta=carta;
+        //importar JSON con el nombre proporcionado
+        let cartaString = fs.readFileSync(carta);
+        let Carta = JSON.parse(cartaString);
+        this.carta=Carta;
         this.precioMenuDia=precioMenuDia;
     }
     mostrarMesas(){
@@ -45,7 +45,7 @@ mesas[2]=new Mesa();
 mesas[3]=new Mesa();
 mesas[4]=new Mesa();
 //Añadir Restaurante
-let restaurante1=new Restaurante(mesas,5,Carta,10)
+let restaurante1=new Restaurante(mesas,5,"./carta.json",10)
 //Menú principal
 const readline=require('node:readline/promises')
 const {stdin:input, stdout:output}=require('node:process')
