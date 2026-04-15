@@ -9,7 +9,7 @@ class Mesa{
     }
 }
 class Restaurante{
-    
+    //En el enunciado no mpone que pide el número de mesas
     constructor(listaMesas,numMesas,carta,precioMenuDia){
         this.listaMesas=listaMesas
         this.numMesas=numMesas;

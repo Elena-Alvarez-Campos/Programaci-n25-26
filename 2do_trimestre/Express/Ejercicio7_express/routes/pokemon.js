@@ -27,10 +27,10 @@ router.post('/nuevo',(req,res)=>{
         if(req.body.nombre==null||req.body.tipo==null||req.body.ataques==null||req.body.defensa==null||req.body.vida==null){
             res.send("Faltan datos")
         }
-        else{
+        
         listapoke.push(req.body);
         res.json({"status":"ok"});
-        }
+        
         }catch(e){console.log("Datos insuficientes")}
     }
     else if(res.status(400)){
