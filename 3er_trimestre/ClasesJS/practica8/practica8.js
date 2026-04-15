@@ -1,11 +1,56 @@
 
 //Importar json
 const fs=require("fs");
+let cartaString = fs.readFileSync("./carta.json");
+let Carta = JSON.parse(cartaString);
+//readline
+const readline=require('node:readline/promises')
+const {stdin:input, stdout:output}=require('node:process')
+const {error}=require('node:console');
 //clase mesa
 class Mesa{
     constructor(){
         this.consumiciones=[];
         this.libre=true;//La mesa está libre cuando es true
+    }
+    async pedirConsumicion(){
+        let cartaConsumiciones="Carta**********************\n"+"Escribe el número del plato\n\n"+"Preimeros----------------\n";
+        for(let i=0; i<3; i++){
+            if(i==1){cartaConsumiciones+="\nSegundos-----------------\n"}
+            if(i==2){cartaConsumiciones+="\nPostre-------------------\n"}
+            for(let cada_plato of Carta){
+                if(cada_plato.tipo=="primero"&&i==0){
+                    cartaConsumiciones+=cada_plato.id+"."+cada_plato.nombre+"....."+cada_plato.precio+"€"+"\n"
+                }
+                else if(cada_plato.tipo=="segundo"&&i==1){
+                    cartaConsumiciones+=cada_plato.id+"."+cada_plato.nombre+"....."+cada_plato.precio+"€"+"\n"
+                }else if(cada_plato.tipo=="postre"&&i==2){
+                    cartaConsumiciones+=cada_plato.id+"."+cada_plato.nombre+"....."+cada_plato.precio+"€"+"\n"
+                }
+                
+            }
+        }
+        const rl=readline.createInterface({input,output})
+        const respuesta=await rl.question(cartaConsumiciones)    
+        try{
+             let opcion=parseInt(respuesta)
+            let encontrado=false;
+            for(let cada_plato of Carta){
+                if(cada_plato.id==opcion){
+                    encontrado=true;
+                    this.consumiciones.push(cada_plato.nombre)
+                    let pedido=("Tu pedidio***********\n")
+                    for(let cada_consumicion of this.consumiciones){
+                        pedido+=cada_consumicion+"\n"
+                    }
+                    console.log(pedido);
+                }
+            }
+        } catch (error) {
+            console.error(error.message)
+        }finally{
+            rl.close()
+        }
     }
 }
 class Restaurante{
@@ -20,36 +65,54 @@ class Restaurante{
         this.precioMenuDia=precioMenuDia;
     }
     mostrarMesas(){
-        posicion=0
+        let posicion=0
         let mesasOcupadas="Mesas ocupadas********************\n"
         for(let cadaMesa of this.listaMesas){
-            if(cadaMesa.libre==false){//Quere decir que está ocupada
+            
+            if(cadaMesa.libre==false){//Quiere decir que está ocupada
                 mesasOcupadas+="Mesa "+posicion+"\n"
                 for(let cada_pedido of cadaMesa.consumiciones){
-                    for(let cada_plato of Carta){//Falta vincular con el JSON
+                    for(let cada_plato of Carta){
                         if(cada_plato.id==cada_pedido.id){
                             mesasOcupadas+=cada_plato.tipo+": "+cada_plato.nombre+"\n";
+                            break
                         }
                     }
                 }
             }
+            posicion++
         }
         return console.log(mesasOcupadas)
     }
+    buscarMesaVacia(){
+        let mesasV="Mesas Vacías******************\n";
+        let mesaEncontrada=false;
+        for(let cada_mesa of this.listaMesas){
+            if(cada_mesa.libre==true){
+                mesaEncontrada=true
+            }
+        }
+        if(mesaEncontrada==false){
+            console.log("No hay mesas libres")
+        }
+    }
+    seleccionarMesa(){
+
+    }
 }
 //añadir mesas
+
 let mesas=new Array(5)
 mesas[0]=new Mesa();
 mesas[1]=new Mesa();
 mesas[2]=new Mesa();
 mesas[3]=new Mesa();
 mesas[4]=new Mesa();
+
 //Añadir Restaurante
 let restaurante1=new Restaurante(mesas,5,"./carta.json",10)
 //Menú principal
-const readline=require('node:readline/promises')
-const {stdin:input, stdout:output}=require('node:process')
-const {error}=require('node:console');
+
 let programa=true;
 async function MenuPrincipal() {
     const rl=readline.createInterface({input,output})
@@ -94,6 +157,7 @@ async function MenuPrincipal() {
         }
     }
 }
+//MenuPrincipal()
 
 async function MenuMesa() {
     let prog=true
