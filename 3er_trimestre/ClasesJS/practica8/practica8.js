@@ -84,17 +84,28 @@ class Restaurante{
         }
         return console.log(mesasOcupadas)
     }
-    buscarMesaVacia(){
+    async buscarMesaVacia(){
         let mesasV="Mesas Vacías******************\n";
         let mesaEncontrada=false;
         for(let cada_mesa of this.listaMesas){
             if(cada_mesa.libre==true){
                 mesaEncontrada=true
+                mesasV+="Mesa "+this.listaMesas.indexOf(cada_mesa)+"\n"
+            }
+        }
+        if(mesaEncontrada==true){
+            try {
+                const rl=readline.createInterface({input,output})
+                const respuesta=await rl.question(mesasV);
+                let opcion=parseInt(respuesta)
+            } catch (error) {
+                
             }
         }
         if(mesaEncontrada==false){
             console.log("No hay mesas libres")
         }
+        console.log(mesasV)
     }
     seleccionarMesa(){
 
@@ -111,54 +122,8 @@ mesas[4]=new Mesa();
 
 //Añadir Restaurante
 let restaurante1=new Restaurante(mesas,5,"./carta.json",10)
-//Menú principal
 
-let programa=true;
-async function MenuPrincipal() {
-    const rl=readline.createInterface({input,output})
-    while(programa==true){
-        const respuesta=await rl.question("Menú principal**********************\n"+
-            "1.Mostrar mesas\n"+
-            "2.Buscar mesas vacías\n"+
-            "3.Seleccionar mesa\n"+
-            "4.Salir\n"
-        )
-        
-        try {
-            let opcion=parseInt(respuesta)
-            
-            if(isNaN(opcion)){
-                throw new Error('Error: no es un valor compatible')
-            }
-            else{
-                switch (opcion) {
-                    case 1:
-                        restaurante1.mostrarMesas();
-                        break;
-                    case 2:
-                        
-                        break;
-                    case 3:
-                        
-                        break;
-                    case 4:
-                        programa=false
-                        break;
-                    default:
-                        console.error(error.message)
-                        break;
-                }
-            }
-            
-        } catch (error) {
-            console.error(error.message)
-        }finally{
-            rl.close()
-        }
-    }
-}
-//MenuPrincipal()
-
+//Menu mesas************************************************************************************
 async function MenuMesa() {
     let prog=true
     const rl=readline.createInterface({input,output})
@@ -202,3 +167,51 @@ async function MenuMesa() {
         }
     }
 }
+
+//Menú principal***********************************************************************************************
+
+let programa=true;
+async function MenuPrincipal() {
+    const rl=readline.createInterface({input,output})
+    while(programa==true){
+        const respuesta=await rl.question("Menú principal**********************\n"+
+            "1.Mostrar mesas\n"+
+            "2.Buscar mesas vacías\n"+
+            "3.Seleccionar mesa\n"+
+            "4.Salir\n"
+        )
+        
+        try {
+            let opcion=parseInt(respuesta)
+            
+            if(isNaN(opcion)){
+                throw new Error('Error: no es un valor compatible')
+            }
+            else{
+                switch (opcion) {
+                    case 1:
+                        restaurante1.mostrarMesas();
+                        break;
+                    case 2:
+                        restaurante1.buscarMesaVacia()
+                        break;
+                    case 3:
+                        
+                        break;
+                    case 4:
+                        programa=false
+                        break;
+                    default:
+                        console.error(error.message)
+                        break;
+                }
+            }
+            
+        } catch (error) {
+            console.error(error.message)
+        }finally{
+            rl.close()
+        }
+    }
+}
+MenuPrincipal()
