@@ -1,23 +1,20 @@
 
-//Importar json
-//const fs=require("fs");
-/*
-let cartaString = fs.readFileSync("./carta.json");
-let Carta = JSON.parse(cartaString);*/
 //readline
 const readline=require('node:readline/promises')
 const {stdin:input, stdout:output}=require('node:process')
 const {error}=require('node:console');
 //clase mesa
-class Mesa{
+class Mesa{//***********************************************************************************************************************************
     constructor(){
         this.consumiciones=[];
         this.libre=true;//La mesa está libre cuando es true
     }
-    async pedirConsumicion(){
+    async pedirConsumicion(){/////////////////////////////////////////
+        //Crear la carta
         //Permite crear la carta de manera organizada por la categoría del plato
         let cartaConsumiciones="Carta**********************\n"+"Escribe el número del plato\n\n"+"Preimeros----------------\n";
-        for(let i=0; i<4; i++){
+        for(let i=0; i<4; i++){//Analiza en caso de primeors, segundos, postre y bebidas para ordaenarlos
+            //El numero del plato es su ID
             if(i==1){cartaConsumiciones+="\nSegundos-----------------\n"}
             if(i==2){cartaConsumiciones+="\nPostre-------------------\n"}
             if(i==3){cartaConsumiciones+="\nBebidas-------------------\n"}
@@ -35,38 +32,38 @@ class Mesa{
                 
             }
         }
-        //Investiga la opción
+        //Elegir la opción de la carta
         const rl=readline.createInterface({input,output})
-            
         try{
-            const respuesta=await rl.question(cartaConsumiciones)
-            let opcion=parseInt(respuesta)
+            const respuesta=await rl.question(cartaConsumiciones)//Se hace la pregunta y se espera por su respuesta
+            let opcion=parseInt(respuesta)//Se pasa la respuesta a número entero
             let encontrado=false;
-            for(let cada_plato of restaurante1.carta){
+            for(let cada_plato of restaurante1.carta){//platos de la carta
                 if(cada_plato.id==opcion){
                     encontrado=true;
-                    this.consumiciones.push(cada_plato.nombre)
+                    this.consumiciones.push(cada_plato.nombre)//añadir el plato a consumiciones
                     let pedido=("Tu pedidio***********\n")
                     for(let cada_consumicion of this.consumiciones){
-                        pedido+=cada_consumicion+"\n"
+                        pedido+=cada_consumicion+"\n"//Mostrar los pedidos de forma organizada
                     }
                     console.log(pedido);
                 }
             }
-            rl.close()
+            rl.close()//IMPORTANTE!!
+            //Si se pone en un finally da problemas
             if(encontrado==true){
-                MenuMesa(this)
+                MenuMesa(this)//Vuelve al menú de esta mesa tanto si lo encuentra como si no
             }
             else{
                 console.log("No se ha encontrado el plato")
                 MenuMesa(this)
             }
         } catch (error) {
-            rl.close()
+            rl.close()//Es importante cerrar tanto si hay un error como no
             console.error(error.message)
         }
     }
-    async pedirCuenta(){
+    async pedirCuenta(){//////////////////////////////////////////////
         this.libre=true;//la mesa va a estar libre a partir de ahora
         let primeros=0
         let segundos=0
@@ -75,7 +72,7 @@ class Mesa{
         let precioTotal=0
         for(let cada_consumicion of this.consumiciones){
             for(let cada_plato of restaurante1.carta){
-                if(cada_consumicion==cada_plato.nombre){
+                if(cada_consumicion==cada_plato.nombre){//si se encuentra el plato lo busca en la carta y determita que tipo de plato es
                     if(cada_plato.tipo=="primero"){
                         primeros++
                     }else if(cada_plato.tipo=="segundo"){
@@ -89,40 +86,42 @@ class Mesa{
                 }
             }
         }
-        let buscador=true
+        let buscador=true//Esta variable determina si se tiene que volver a ver si hay más menús
         while(buscador==true){
+            //Para que haya un menú, tiene qeu haber un plato de cada com mínimo
             if(primeros>0 && segundos>0 && postres>0 && bebidas>0){
                 //console.log("primeros: "+primeros+"\nsegundos: "+segundos+"\npostres: "+postres+"\nbebidas: "+bebidas)
+                //Se quita 1 plato de cada categoría y se añade el precio del menú del día al total
                 primeros-=1
                 segundos-=1
                 postres-=1
                 bebidas-=1
                 precioTotal+=restaurante1.precioMenuDia
-                for(let i=0; i<4;i++){
-                    let posicion=-1;
-                    let tipoN=""
+                for(let i=0; i<4;i++){//Se repite 4 veces, cada una para buscar un plato de cada
+                    let posicion=-1;//La posición nunca será un número negarivo, pero si 0
+                    let tipoN=""//Determinará que tipo de plato de buscará en función de la vuelta del bucle
                     if(i==0){tipoN="primero"}
                     else if(i==1){tipoN="segundo"}
                     else if(i==2){tipoN="postre"}
                     else if(i==3){tipoN="bebida"}
                     for(let cada_plato of restaurante1.carta){
-                        if(posicion>=0){
+                        if(posicion>=0){//De esta forma se saldrá del bucle al encontrar el primer plato que cuente con el tipò
                             break
                         }
-                        for(let cada_consumicion of this.consumiciones){
+                        for(let cada_consumicion of this.consumiciones){//si no, lño busca en la lista de consumiciones
                             if(cada_consumicion==cada_plato.nombre && cada_plato.tipo==tipoN){
                                 posicion=this.consumiciones.indexOf(cada_consumicion)
                                 break
                             }
                         }
                     }
-                    this.consumiciones.splice(posicion,1)
+                    this.consumiciones.splice(posicion,1)//Se elimina la consumición que se encuentra en esa posición
                 }
-            }else{
+            }else{//En caso de que ya no puedan haber más menús sale del bucle
                 buscador=false
             }
         }
-        for(let cada_consumicion of this.consumiciones){
+        for(let cada_consumicion of this.consumiciones){//Si quedaqn consumiciones que no forman parte de menús, se cobrarán por separado
             for(let cada_plato of restaurante1.carta){
                 if(cada_consumicion==cada_plato.nombre){
                     precioTotal+=cada_plato.precio
@@ -133,12 +132,12 @@ class Mesa{
         console.log("Precio total a pagar: "+precioTotal+"€")
     }
 }
-class Restaurante{
+class Restaurante{//****************************************************************************************************************************
     //En el enunciado no mpone que pide el número de mesas
     constructor(numMesas,carta,precioMenuDia){
         this.numMesas=numMesas;
-        this.listaMesas=[]
-        for(let i=0;i<numMesas;i++){
+        this.listaMesas=[]//la lista de mesas empieza vacío
+        for(let i=0;i<numMesas;i++){//se le añaden el número de mesas establecido antes
             this.listaMesas[i]=new Mesa();
         }
         //importar JSON con el nombre proporcionado
@@ -146,21 +145,21 @@ class Restaurante{
         let cartaString = fs.readFileSync(carta);
         let Carta = JSON.parse(cartaString);
         this.carta=Carta;
+
         this.precioMenuDia=precioMenuDia;
     }
-    mostrarMesas(){
+    mostrarMesas(){///////////////////////////////////////////////////
         let posicion=0
         let mesasOcupadas="Mesas ocupadas********************\n"
         let encontrada=false;
         for(let cadaMesa of this.listaMesas){
             if(cadaMesa.libre==false){//Quiere decir que está ocupada
-                mesasOcupadas+="Mesa "+posicion+"\n"
+                mesasOcupadas+="Mesa "+posicion+"\n"//añade la posición de la mesa como id
                 encontrada=true
-                for(let cada_pedido of this.listaMesas[posicion].consumiciones){
+                for(let cada_pedido of this.listaMesas[posicion].consumiciones){//Se buscan las consumiciones de esa mesa
                     for(let cada_plato of this.carta){
-                        if(cada_plato.nombre==cada_pedido){
+                        if(cada_plato.nombre==cada_pedido){//Muestra lsa consumiciones de forma ordenada con su tipo
                             mesasOcupadas+="-"+cada_plato.tipo+": "+cada_plato.nombre+"\n";
-
                             break
                         }
                     }
@@ -168,85 +167,81 @@ class Restaurante{
             }
             posicion++
         }
-        if(encontrada==false){
+        if(encontrada==false){//Si no hay mesas ocupadas muestra otro mensaje
             console.log("Todas las mesas están libres")
         }else{
             console.log(mesasOcupadas)
         }
     }
-    async buscarMesaVacia(){
+    async buscarMesaVacia(){//////////////////////////////////////////
         
         let mesasV="Mesas Vacías******************\nSelecciona una mesa:\n";
         let mesaEncontrada=false;
-        let mesasDisponibles=[]
+        let mesasDisponibles=[]//Determinará que mesas están disponibles y cuales no
         for(let cada_mesa of this.listaMesas){
-            if(cada_mesa.libre==true){
-                mesaEncontrada=true
+            if(cada_mesa.libre==true){//Encuentra una mesa libre
+                mesaEncontrada=true//marca que encontró mesas libres
                 mesasV+="Mesa "+this.listaMesas.indexOf(cada_mesa)+"\n"
-                mesasDisponibles.push(this.listaMesas.indexOf(cada_mesa))
+                mesasDisponibles.push(this.listaMesas.indexOf(cada_mesa))//Añade la posición de cada mesa
             }
         }
-        if(mesaEncontrada==true){
+        if(mesaEncontrada==true){//si hay mesas libres
             const rl=readline.createInterface({input,output})
             try {
-                
                 const respuesta=await rl.question(mesasV);
                 let opcion=parseInt(respuesta)
-                rl.close()
+                rl.close()//importante cerrar
                 let disponible=false
                 for(let cadaMesa of mesasDisponibles){
                     if(opcion==cadaMesa){
-                        disponible=true
+                        disponible=true//determina que la mesa seleccionada es de las disponibles en la lista
                     }
                 }
                 if(disponible==true){
                     this.listaMesas[opcion].libre=false
+                    //Va al menú mesa de la mesa seleccionada
                     MenuMesa(this.listaMesas[opcion])
                     if(isNaN(opcion)){
                         throw new Error('Error: no es un valor compatible')
                     }
-                }else{
+                }else{//Si no está en la lista:
                     console.log("Mesa no disponible")
                     MenuPrincipal()
                 }
-                
-
                 if(isNaN(opcion)){
                     throw new Error('Error: no es un valor compatible')
                     
                 }
-                
             } catch (error) {
-                rl.close()
+                rl.close()//importante
                 console.error(error.message)
-                
             }
         }
-        else{
-            
+        else{//Si no hay mesas libres
             console.log("No hay mesas libres")
             MenuPrincipal()
         }
-        
     }
-    async seleccionarMesa(){
+    async seleccionarMesa(){//////////////////////////////////////////
         let mesasV="Mesas Ocupadas******************\nSelecciona una mesa:\n";
         let mesaEncontrada=false;
         let mesasDisponibles=[]
         for(let cada_mesa of this.listaMesas){
-            if(cada_mesa.libre==false){
+            if(cada_mesa.libre==false){//determina si hay mesas libres
                 mesaEncontrada=true
                 mesasV+="Mesa "+this.listaMesas.indexOf(cada_mesa)+"\n"
                 mesasDisponibles.push(this.listaMesas.indexOf(cada_mesa))
             }
         }
         //coderunner run in terminal
-        if(mesaEncontrada==true){
+        if(mesaEncontrada==true){//en caso de que haya mesas libres:
             const rl=readline.createInterface({input,output})
             try {
-                
                 const respuesta=await rl.question(mesasV);
                 let opcion=parseInt(respuesta)
+                if(isNaN(opcion)){
+                        throw new Error('Error: no es un valor compatible')
+                    }
                 rl.close()
                 let disponible=false
                 for(let cadaMesa of mesasDisponibles){
@@ -254,12 +249,10 @@ class Restaurante{
                         disponible=true
                     }
                 }
-                if(disponible==true){
-                    MenuMesa(this.listaMesas[opcion])
-                    if(isNaN(opcion)){
-                        throw new Error('Error: no es un valor compatible')
-                    }
-                }else{
+                if(disponible==true){//se encontró la mesa
+                    MenuMesa(this.listaMesas[opcion])//lleva al menú mesa de ka elegida
+                    
+                }else{//no se encontró la mesa
                     console.log("Mesa no disponible")
                     MenuPrincipal()
                 }
@@ -270,9 +263,9 @@ class Restaurante{
                 
             }
         }
-        else{
+        else{//en caso de no que haya mesas libres:
             console.log("No hay mesas ocupadas")
-            MenuPrincipal()
+            MenuPrincipal()//Vuelve al menú principal
         }
 
     }
