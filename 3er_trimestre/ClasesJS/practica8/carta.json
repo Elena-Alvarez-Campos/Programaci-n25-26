@@ -44,5 +44,20 @@
         "tipo":"postre",
         "nombre":"Helado",
         "precio":1.5
+    },{
+        "id":10,
+        "tipo":"bebida",
+        "nombre":"Agua",
+        "precio":1.5
+    },{
+        "id":11,
+        "tipo":"bebida",
+        "nombre":"Refresco",
+        "precio":2.5
+    },{
+        "id":12,
+        "tipo":"bebida",
+        "nombre":"Zumo",
+        "precio":2
     }
 ]

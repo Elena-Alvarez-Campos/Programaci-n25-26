@@ -27,5 +27,5 @@ async function Validar() {
         rl.close()
     }
 }
-//Validar()
+Validar()
 //EJERCICIO 2*************************************************
