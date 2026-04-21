@@ -6,11 +6,11 @@
 
 
 //Código sincrono
-/*
+
 console.log("1.pido pizza")
 function cocinarSincrona(){
     const ini=Date.now();
-    while(Date.now()-ini<3000*//**Está en milisegundos automáticamente *//*){
+    while(Date.now()-ini<3000/**Está en milisegundos automáticamente */){
         return "pizza lista"
     }
 }
@@ -20,7 +20,7 @@ console.log("2. pido la cuenta")
 
 //código asíncrono
 //Definir la tarea pesada como una promesa (te prometo que lo voy a hacer)
-/*
+
 const cocinarPizza=()=>{
     return new Promise((resolve)=>{
         //Tiempo fuera
@@ -59,9 +59,9 @@ console.log("abriendo app")
 obtenerUsuario().then(mensaje =>{console.log("resultado de la bbdd "+mensaje)})
 
 const { rejects } = require("assert");
-*/
+
 //readline es el encargado de leer por terminal
-/*
+
 const readline=require("readline");
 //1.Creamos una interfaz de lexctura
 const rl=readline.createInterface({
@@ -92,7 +92,7 @@ validarPassword()
 //mensaje que viene del resolve
 .then((mensaje)=> console.log(mensaje))
 .catch((error)=> console.error(error))
-*/
+
 //MÉTODO NUEVO***********************************************
 //importar versión de readline con promesas
 const readline=require('node:readline/promises')

@@ -233,7 +233,7 @@ class Restaurante{//************************************************************
                 mesasDisponibles.push(this.listaMesas.indexOf(cada_mesa))
             }
         }
-        //coderunner run in terminal
+        
         if(mesaEncontrada==true){//en caso de que haya mesas libres:
             const rl=readline.createInterface({input,output})
             try {
