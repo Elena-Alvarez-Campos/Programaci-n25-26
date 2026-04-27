@@ -1,0 +1,33 @@
+[
+    {
+        "nombre":"Palomitas",
+        "tipo":"comestible",
+        "precio":4,
+        "descuento":0
+    },{
+        "nombre":"Cola",
+        "tipo":"bebida",
+        "precio":2,
+        "descuento":10
+    },{
+        "nombre":"John Wick 4",
+        "tipo":"película",
+        "precio":4.6,
+        "descuento":0
+    },{
+        "nombre":"Perrito caliente",
+        "tipo":"comestible",
+        "precio":5,
+        "descuento":20
+    },{
+        "nombre":"Agua",
+        "tipo":"bebida",
+        "precio":1.5,
+        "descuento":0
+    },{
+        "nombre":"Marte",
+        "tipo":"película",
+        "precio":5.5,
+        "descuento":0
+    }
+]
