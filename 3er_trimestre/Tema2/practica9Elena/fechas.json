@@ -1,5 +1,11 @@
-{
-    "fecha": "2026-05-12T18:15:00.000+02:00",
-    "titulo": "Título del evento",
-    "duracion": 180
-}
+[
+    {
+        "fecha": "2026-06-12T18:10:00.000+02:00",
+        "titulo": "Cumpleaños Paco",
+        "duracion": 30
+    },{
+        "fecha": "2026-05-12T18:15:00.000+02:00",
+        "titulo": "Comida familiar",
+        "duracion": 180
+    }
+]
