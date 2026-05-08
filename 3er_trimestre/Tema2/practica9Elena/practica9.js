@@ -10,9 +10,12 @@ const { DateTime, Interval } = require("luxon");
 const fs=require("fs");
 const fechasString = fs.readFileSync("./practica9Elena/fechas.json");
 let listaFechas = JSON.parse(fechasString);//determina que esta variable es el json
-
+const rl=readline.createInterface({input,output});
 //Clase
 class Agenda {
+    eventoNuevo(){
+        
+    }
     eventosHoy(){
         //console.log(DateTime.now().day)
         let encontrado=false
@@ -43,7 +46,7 @@ class Agenda {
             }
         }
         if(encontrado==false){
-            console.log("No se ha encontrado ningún evento para hoy")
+            console.log("No se ha encontrado ningún evento para esa fecha")
         }else{
             console.log(listaEventos)
         }
@@ -58,7 +61,7 @@ class Agenda {
 //Menú del main
 async function MenuPrincipal() {
     let programa=true;
-    const rl=readline.createInterface({input,output});
+    //const rl=readline.createInterface({input,output});
     while(programa==true){
         try{
             const respuesta=await rl.question("Menú Principal********************\n"+
@@ -143,14 +146,15 @@ async function MenuPrincipal() {
                         let opcionNueva=await rl.question(menu+"Elige una opción\n")
                         try {
                             num=parseInt(opcionNueva);
-                            if (opcionNueva<=listaFechas.length && opcionNueva>0) {
-                                agenda1.eliminaEvento()
-                            }else if(opcionNueva==listaFechas.length+1){
+                            num=num-1
+                            if (num<listaFechas.length && num>=0) {
+                                agenda1.eliminaEvento(num)
+                            }else if(num==listaFechas.length){
                                 console.log("Volviendo al menú principal")
                             }else{
                                 console.log("Opción no válida")
                             }
-                            agenda1.eliminaEvento(num)
+                            
                         } catch (error) {
                             console.log("No es un número de la lista")
                         }
@@ -158,7 +162,8 @@ async function MenuPrincipal() {
                     case 5:
                         programa=false
                         break;
-                    case 6:
+                        /*
+                    case 6://pruebas (ignorar)
                         let fecha1=toString({
                             "fecha": "2026-06-12T18:10:00.000+02:00",
                             "titulo": "Cumpleaños Paco",
@@ -166,6 +171,7 @@ async function MenuPrincipal() {
                         })
                         console.log(listaFechas.indexOf(fecha1))
                         break
+                        */
                     default:
                         console.log("Esta opción no es compatible")
                         break;
