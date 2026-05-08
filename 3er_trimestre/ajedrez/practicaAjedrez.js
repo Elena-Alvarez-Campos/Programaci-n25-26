@@ -1,8 +1,9 @@
 
 function tableroAjedrez(){
     let letras=["A","B","C","D","E","F","G","H"]
-    let tablero=[[],[],[],[],[],[],[],[],[]];
+    let tablero=[];
     for(let i=0;i<=8;i++){
+        tablero[i]=[]
         for(let j=0;j<=8;j++){
             if(j==0 && i==0){
                 tablero[i][j]=0+"  "
@@ -22,11 +23,39 @@ function tableroAjedrez(){
     let numj=0
     let numi=0
     for( let cada_pieza of piezas){
+        //DESWPUÉS DE LA CORRECCIÓN CLASE
+        
+        let colocada=false
+        while (!colocada){
+            numj=Math.random()*(8-1)+1
+            numi=Math.random()*(8-1)+1
+            if(tablero[Math.round(numi)][Math.round(numj)]=="  |"){
+                tablero[Math.round(numi)][Math.round(numj)]=" "+cada_pieza+"|"
+                colocada=true
+            }
+        }
+        //Sin corrección (no ví si había una pieza colocada en ese lugar)
+        /*
         numj=Math.random()*(8-1)+1
         numi=Math.random()*(8-1)+1
+        
         tablero[Math.round(numi)][Math.round(numj)]=" "+cada_pieza+"|"
+        */
     }
     //console.log(tablero)
+    //CORRECCIÓN DE CLASE
+    //La primera línea es un string, no posiciones del array
+    // let salida=" 0 1 2 3 4 5 6 7 \n"
+    /*
+    for(i=0; i<8; i++){
+        salida+=i+"|";
+        for(j=0; j<8; j++){
+        salida+=(tablero[i][j] || " "+"|")
+        }
+        salida+="\n";
+        console.log(salida);
+    }
+    */
     let tableroString=""
     for(let cadaFila of tablero){
         for(let cadaCasilla of cadaFila){
@@ -77,13 +106,14 @@ function tableroAjedrez(){
                 }
             }else if(tablero[i][j]==" "+"A"+"|"){
                 console.log("Alfil:")
-                
+
             }
         }
     }
     return(tablero)
 }
 tableroAjedrez()
+
 function tipoPieza(casilla){
     if(casilla==" "+"T"+"|"){return "Se puede comer la torre"}
     else if(casilla==" "+"C"+"|"){return "Se puede comer el caballo"}
