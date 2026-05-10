@@ -4,6 +4,7 @@
 const readline=require('node:readline/promises')
 const {stdin:input, stdout:output}=require('node:process')
 const {error}=require('node:console');
+const rl=readline.createInterface({input,output});
 //luxon
 const { DateTime, Interval } = require("luxon");
 //leer el json
@@ -58,7 +59,6 @@ class Agenda {
 //Menú del main
 async function MenuPrincipal() {
     let programa=true;
-    const rl=readline.createInterface({input,output});
     while(programa==true){
         try{
             const respuesta=await rl.question("Menú Principal********************\n"+
@@ -142,15 +142,14 @@ async function MenuPrincipal() {
                         menu+=(listaFechas.length+1)+".Salir\n"
                         let opcionNueva=await rl.question(menu+"Elige una opción\n")
                         try {
-                            num=parseInt(opcionNueva);
-                            if (opcionNueva<=listaFechas.length && opcionNueva>0) {
-                                agenda1.eliminaEvento()
-                            }else if(opcionNueva==listaFechas.length+1){
+                            num=parseInt(opcionNueva)-1;
+                            if (num<listaFechas.length && num>=0) {
+                                agenda1.eliminaEvento(num)
+                            }else if(num==listaFechas.length){
                                 console.log("Volviendo al menú principal")
                             }else{
                                 console.log("Opción no válida")
                             }
-                            agenda1.eliminaEvento(num)
                         } catch (error) {
                             console.log("No es un número de la lista")
                         }
@@ -158,14 +157,6 @@ async function MenuPrincipal() {
                     case 5:
                         programa=false
                         break;
-                    case 6:
-                        let fecha1=toString({
-                            "fecha": "2026-06-12T18:10:00.000+02:00",
-                            "titulo": "Cumpleaños Paco",
-                            "duracion": 30
-                        })
-                        console.log(listaFechas.indexOf(fecha1))
-                        break
                     default:
                         console.log("Esta opción no es compatible")
                         break;
