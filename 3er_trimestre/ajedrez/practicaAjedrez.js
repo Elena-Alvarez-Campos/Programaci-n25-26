@@ -79,6 +79,57 @@ function tipoPieza(casilla){
     else if(casilla==" "+"Q"+"|"){return "Se puede comer la reina"}
     else{return "No puede comer ninguna pieza"}
 }
+
+//CORRECCIÓN EN CLASE************************
+//meter todo en un switch
+//con variable límite: K,P,C
+//suma x y suma y como variables
+/*
+for(let x=0;x<8;x++){
+    for(let y=0;y<8;y++){
+        if(tablero[x][y]){//exixte ficha
+            switch(tablero[x][y]){
+                case 'T':
+                brake;
+                case 'A':
+                brake;
+                case 'Q':
+                brake;
+                case 'K':
+                brake;
+                case 'P':
+                    //limite,x,y,suma x, suma y
+                    comePiezas(true,x,y,-1,1)
+                    comePiezas(true,x,y,1,1)
+                brake;
+                case 'C':
+                brake;
+            }
+        }
+    }
+}
+/**
+ * -horizontal der: suma_x=1, suma_y=0
+ * -horizontal izq: suma_x=-1, suma_y=0
+ * -vertical arriba: suma_x=0, suma_y=1
+ * -vertical abajo: suma_x=0, suma_y=-1
+ * -diagonal arriba izq: suma_x=-1, suma_y=1
+ * -diagonal arriba der: suma_x=1, suma_y=1
+ * -diagonal abajo izq: suma_x=-1, suma_y=-1
+ * -diagonal abajo der: suma_x=1, suma_y=-1
+ * 
+ * @param {boolean} limite 
+ * @param {number} x 
+ * @param {number} y 
+ * @param {0|1|-1} suma_x 
+ * @param {0|1|-1} suma_y 
+ * @return {string[]};//piezas que se come
+ */
+/*
+function comePiezas(limite,x,y,suma_x,suma_y){
+}
+
+*/
 function comePeon(requisito){
     for(let i=0;i<=8;i++){
         for(let j=0;j<=8;j++){
@@ -163,21 +214,57 @@ function comeAlfil(requisito) {
 function comeCaballo(requisito) {
     for(let i=0;i<=8;i++){
         for(let j=0;j<=8;j++){
-            if(tablero[i][j]==requisito){
+            if(tablero[i][j]==requisito){//encuentra pieza
                 let encontrado=false;
-                if(tipoPieza(tablero[i+3][j+1])!="No puede comer ninguna pieza"){
-                    console.log(tipoPieza(tablero[i+3][j+1]))
-                    encontrado=true
-                }if(tipoPieza(tablero[i+3][j-1])!="No puede comer ninguna pieza"){
-                    console.log(tipoPieza(tablero[i+3][j-1]))
-                    encontrado=true
-                }if(tipoPieza(tablero[i-3][j+1])!="No puede comer ninguna pieza"){
-                    console.log(tipoPieza(tablero[i-3][j+1]))
-                    encontrado=true
-                }if(tipoPieza(tablero[i-3][j-1])!="No puede comer ninguna pieza"){
-                    console.log(tipoPieza(tablero[i-3][j-1]))
-                    encontrado=true
-                }if(encontrado==false){
+                try {//abajo der
+                    if(tipoPieza(tablero[i+3][j+1])!="No puede comer ninguna pieza"){
+                        console.log(tipoPieza(tablero[i+3][j+1]))
+                        encontrado=true
+                    }
+                } catch (error){}
+                try {//abajo iz
+                    if(tipoPieza(tablero[i+3][j-1])!="No puede comer ninguna pieza"){
+                        console.log(tipoPieza(tablero[i+3][j-1]))
+                        encontrado=true
+                    }
+                } catch (error){}
+                try {//arriba der
+                    if(tipoPieza(tablero[i-3][j+1])!="No puede comer ninguna pieza"){
+                        console.log(tipoPieza(tablero[i-3][j+1]))
+                        encontrado=true
+                    }
+                } catch (error){}
+                try{//arriba iz
+                    if(tipoPieza(tablero[i-3][j-1])!="No puede comer ninguna pieza"){
+                        console.log(tipoPieza(tablero[i-3][j-1]))
+                        encontrado=true
+                    }
+                }catch(error){}
+                try{//derecha ar
+                    if(tipoPieza(tablero[i-1][j+3])!="No puede comer ninguna pieza"){
+                        console.log(tipoPieza(tablero[i-1][j+3]))
+                        encontrado=true
+                    }
+                }catch(error){}
+                try{//derecha ab
+                    if(tipoPieza(tablero[i+1][j+3])!="No puede comer ninguna pieza"){
+                        console.log(tipoPieza(tablero[i+1][j+3]))
+                        encontrado=true
+                    }
+                }catch(error){}
+                try{//izquierda ar
+                    if(tipoPieza(tablero[i-1][j-3])!="No puede comer ninguna pieza"){
+                        console.log(tipoPieza(tablero[i-1][j-3]))
+                        encontrado=true
+                    }
+                }catch(error){}
+                try{//izquierda ab
+                    if(tipoPieza(tablero[i+1][j-3])!="No puede comer ninguna pieza"){
+                        console.log(tipoPieza(tablero[i+1][j-3]))
+                        encontrado=true
+                    }
+                }catch(error){}
+                if(encontrado==false){
                     console.log("No puede comer ninguna pieza")
                 }
             }
