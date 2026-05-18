@@ -11,7 +11,15 @@ const { DateTime, Interval } = require("luxon");
 const fs=require("fs");
 const fechasString = fs.readFileSync("./practica9Elena/fechas.json");
 let listaFechas = JSON.parse(fechasString);//determina que esta variable es el json
+//Actualizar un JSON
+//fs.writeFileSync("./practica9Elena/fechas.json", JSON.stringify(listaFechas))//pasar los datos al json                
 
+//Recordatorio
+//let respuesta=await rl.question("Respende a esta pregunta\n")
+//if(isNaN(respuesta)){//significa que no es nun número
+//  throw new Error("Error: no es un valor compatible")
+//console.error(error.message)//se usa en el catch
+// }
 //Clase
 class Agenda {
     async eventoNuevo(){
