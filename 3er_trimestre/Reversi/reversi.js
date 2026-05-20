@@ -48,16 +48,25 @@ let juego=true;
 let ronda=0;//si es par es el truno del J1 (O), si es impar es el turno del J2(X)
 
 async function turno(ficha,rival) {
-    let respuesta=await rl.question("Escribe coordenadas\n")
-    console.log(respuesta)
-    mostrar()
+    try {
+        let respuesta=await rl.question("Escribe las coordenadas:\n")
+        if(isNaN(respuesta)){
+            throw new Error("Tiene que ser un número");
+            
+        }
+        console.log(respuesta)
+        mostrar()
+    } catch (error) {
+        console.error(error.message);
+    }
+    
 }
 
 //distribuidor turnos y victorias
 //while(juego==true){
 for(let x=0;x<4;x++){
     let vacio=false;
-    if(ronda%2==0){
+    if(x%2==0){
         console.log('Turno del jugador 1 (O)')
         turno('X','O')
     }
@@ -65,7 +74,7 @@ for(let x=0;x<4;x++){
         console.log('Turno del jugador 2 (X)')
         turno('O','X')
     }
-    
+    /*
     for (let i=0;i<8;i++) {
         if(vacio==true){break}
         for (let j=0;j<8;j++) {
@@ -73,9 +82,9 @@ for(let x=0;x<4;x++){
                 vacio=true;
             }
         }
-    }
+    }*/
     ronda++
-    if(vacio==false){
+    if(x==3/*vacio==false*/){
         juego==false
         rl.close();
     }
