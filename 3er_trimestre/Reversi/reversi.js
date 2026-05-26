@@ -48,7 +48,7 @@ mostrar()
 function turno(jugador,rival,letra,num) {
     let i=num-1//numero
     let j=letras.indexOf(letra)//letra
-    console.log(''+i+' '+j)
+    //console.log(''+i+' '+j)
     if(tablero[i][j]==null){
         let casillaAntes=tablero[i][j]
         tablero[i][j]=jugador
@@ -70,7 +70,9 @@ function turno(jugador,rival,letra,num) {
 // izquierda: j-1
 function buscaRival(i,j,rival,jugador){//buscar si hay un rival en general
     //i y j representan la posición de la pieza nueva
+    
     let encontrado=false;
+    let validez
     try{
         if(tablero[i-1][j]==rival){//ariba
             volteaFicha(i-1,j,rival,jugador,-1,0)
@@ -109,7 +111,7 @@ function volteaFicha(i,j,rival,jugador,suma_i,suma_j){
     for (let z = 0; z < 2; z++){
         i=x
         j=y
-        if(voltear==false && z==1){//no hace alta que vuelva a recorrer el bucle si no hay ninguna ficha del jugador
+        if(voltear==false && z==1){//no hace falta que vuelva a recorrer el bucle si no hay ninguna ficha del jugador
             break
         }
         while (i>=0&&i<tablero.length&&j>= 0 && j < tablero[i].length) {
@@ -128,16 +130,23 @@ function volteaFicha(i,j,rival,jugador,suma_i,suma_j){
         }
         
     }
+    if(voltear==false){
+        return false
+    }
 }
-//Función del juego
+//Función del juego***********************************************************************************
 async function Juego() {
-    let jugador=''
-    let rival=''
-    let ganador=''
-    let ronda=0;
+    let jugador=''//determina quien es el jugador en ese turno
+    let rival=''//determina quien es el rivalen ese turno
+    let ronda=0;//determina la ronda
     let fin=false
-    while(fin==false){
-        let hayNUll=false
+    let rondaPaso1=0
+    let paso1=false;
+    let paso2=false
+    let jugador1=0
+    let jugador2=0
+    while(fin==false){//si la partida no llega al final se sigue jugando
+        let hayNUll=false//determina se hay alguna casilla vacía (se reinica cada vez que se coloca una casilla nueva)
         if(ronda%2==0){
             console.log('Turno del jugador 1 (X)')
             jugador='X'
@@ -149,11 +158,24 @@ async function Juego() {
             rival='X'
         }
         let correcto=false;//si las cordenadas que dá son erroneas no pasa al turno del siguiente
+        
         while (correcto==false){
-            let letra=await rl.question("Esctibe la cordenada horizontal (A-H)")
-            let num=await rl.question("Esctibe la cordenada vertical (1-8)")
+            let letra=await rl.question("Si quieres pasar el turno escribe 'paso'\n"+"Esctibe la cordenada horizontal (A-H): ")
+            letra=letra.toUpperCase()
+            if(letra=='PASO' && paso1==false){
+                paso1=true
+                rondaPaso1=ronda
+                console.log(paso1)
+                break
+            }else if(letra=='PASO' && paso1==true){
+                paso2=true
+                break
+            }
+            let num=await rl.question("Esctibe la cordenada vertical (1-8): ")
             try {
+                
                 //filtra número
+                
                 if(isNaN(num)||num>8||num<1) {
                     throw new Error("Valor horizontal incorrecto");
                 }
@@ -161,7 +183,7 @@ async function Juego() {
                 else{
                     let letra_encontrada=false
                     let numero=parseInt(num)
-                    letra=letra.toUpperCase()
+                    
                     for(let cadaletra of letras){
                         if(cadaletra==letra){//se filtraron bien ambas
                             letra_encontrada=true
@@ -181,6 +203,7 @@ async function Juego() {
             } catch (error) {
                 console.error(error.message)
             }
+            
         }
         ronda++
         for(let i=0; i<8; i++){
@@ -190,11 +213,16 @@ async function Juego() {
                 }
             }
         }
+        if(paso1==true && paso2==false &rondaPaso1%2==ronda%2){
+            paso1=false
+        }
+        if(paso1==true && paso2==true){
+            fin=true
+        }
+
         if(hayNUll==false){
             fin=true
             console.log("FIN")
-            let jugador1=0
-            let jugador2=0
             for(let i=0; i<8; i++){
                 for(let j=0; j<8;j++){
                     if(tablero[i][j]=='X'){
@@ -204,13 +232,18 @@ async function Juego() {
                     }
                 }
             }
+            //
+            
+        }
+        if(fin==true){
+            console.log("Fichas jugador 1 (X): "+jugador1+'\nFichas jugador 2 (O): '+jugador2)
             if(jugador1>jugador2){
-                ganador='Jugador 1'
+                console.log('\nEl ganador es el jugador 1!!!')
+            }else if(jugador2>jugador1){
+                console.log('\nEl ganador es el jugador 2!!!')
             }else{
-                ganador='Jugador 2'
+                console.log('Empate···')
             }
-            console.log("Fichas jugador 1 (X): "+jugador1+'\nFichas jugador 2 (O): '+jugador2+
-                '\nEl ganador es '+ganador+'!!!')
         }
     }
     rl.close()
