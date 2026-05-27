@@ -183,7 +183,7 @@ async function Juego() {
             if(letra=='PASO' && paso1==false){
                 paso1=true
                 rondaPaso1=ronda
-                console.log(paso1)
+                //console.log(paso1)
                 break
             }else if(letra=='PASO' && paso1==true){
                 paso2=true
@@ -234,12 +234,10 @@ async function Juego() {
         if(paso1==true && paso2==false &rondaPaso1%2==ronda%2){
             paso1=false
         }
-        if(paso1==true && paso2==true){
+        if((paso1==true && paso2==true)||hayNUll==false){
             fin=true
         }
-
-        if(hayNUll==false){
-            fin=true
+        if(fin==true){
             console.log("FIN")
             for(let i=0; i<8; i++){
                 for(let j=0; j<8;j++){
@@ -250,10 +248,6 @@ async function Juego() {
                     }
                 }
             }
-            //
-            
-        }
-        if(fin==true){
             console.log("Fichas jugador 1 (X): "+jugador1+'\nFichas jugador 2 (O): '+jugador2)
             if(jugador1>jugador2){
                 console.log('\nEl ganador es el jugador 1!!!')
