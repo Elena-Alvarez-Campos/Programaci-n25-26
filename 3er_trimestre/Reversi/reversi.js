@@ -71,44 +71,48 @@ function turno(jugador,rival,letra,num) {///////////////////////////////////////
 function buscaRival(i,j,rival,jugador){//buscar si hay un rival en general////////////////////////////////////////////////////////////////////
     //i y j representan la posición de la pieza nueva
     
-    let encontrado=false;
-    let validez=false;
-    try{
-        if(tablero[i-1][j]==rival){//ariba
+    let encontrado=false;//determina si se encontró una ficha rival
+    let validez=false;//determina si la hubicación de esa ficha es válida
+    //Si no puede voltear ninguna de las fichas a su alrededor, no puede poner la ficha en ese lugar
+
+    //try{//los try catch son para cuando llega a al borde del tablero
+        if(i-1>=0 && i-1<tablero.length && j<tablero[i-1].length && tablero[i-1][j]==rival){//ariba
             if(volteaFicha(i-1,j,rival,jugador,-1,0)==true){
                 validez=true
             }
             encontrado=true
         }
-    }catch(error){}
-    try {
-        if(tablero[i][j-1]==rival){//izquierda
+    //}catch(error){}
+    //try {
+        if(i>=0 && i<tablero.length && j-1<tablero[i].length && tablero[i][j-1]==rival){//izquierda
             if(volteaFicha(i,j-1,rival,jugador,0,-1)==true){
                 validez=true
             }
             encontrado=true
         }
-    } catch (error) {}
-    try {
-        if(tablero[i][j+1]==rival){//derecha
+    //} catch (error) {}
+   // try {
+        if(i>=0 && i<tablero.length && j+1<tablero[i].length && tablero[i][j+1]==rival){//derecha
             if(volteaFicha(i,j+1,rival,jugador,0,1)==true){
                 validez=true
             }
             encontrado=true
         }
-    } catch (error) {}
-    try {
-        if(tablero[i+1][j]==rival){//abajo
+    //} catch (error) {}
+    //try {
+        if(i+1>=0 && i+1<tablero.length && j<tablero[i+1].length && tablero[i+1][j]==rival){//abajo
             if(volteaFicha(i+1,j,rival,jugador,1,0)==true){
                 validez=true
             }
             encontrado=true
         }
-    } catch (error) {}
+    //} catch (error) {}
     
     if(encontrado==false){
         return false
     }else if(validez==true){
+        //si se quita este else if(), se podría colocar una ficha al lado de cualquier rival
+        //independientemente de si voltea otras o no
         return true
     }else{
         return false
@@ -140,7 +144,7 @@ function volteaFicha(i,j,rival,jugador,suma_i,suma_j){//////////////////////////
             if(voltear==true){
                 tablero[i][j]=jugador
             }
-            //se van sumando lo que se tiene qeu sumar
+            //se van sumando lo que se tiene que sumar
             i+=suma_i
             j+=suma_j
         }
