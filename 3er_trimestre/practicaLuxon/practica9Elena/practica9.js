@@ -12,6 +12,13 @@ const fs=require("fs");
 const fechasString = fs.readFileSync("./practica9Elena/fechas.json");
 let listaFechas = JSON.parse(fechasString);//determina que esta variable es el json
 
+//DateTime.fromObject({ year: anoE, month: mesE, day: diaE, hour:horaE ,minute: minE})
+//fechaE.toISO()
+//DateTime.fromISO(cadaFecha.fecha).toFormat("yyyy-MM-dd HH:mm")
+//Interval.fromDateTimes(DateTime.fromISO(cadaFecha.fecha), dtFin)
+//dtFin.plus({minutes: cadaFecha.duracion})
+//i.length()
+
 //Clase
 class Agenda {
     async eventoNuevo(){
