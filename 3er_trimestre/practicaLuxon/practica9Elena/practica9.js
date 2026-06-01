@@ -16,8 +16,12 @@ let listaFechas = JSON.parse(fechasString);//determina que esta variable es el j
 //fechaE.toISO()
 //DateTime.fromISO(cadaFecha.fecha).toFormat("yyyy-MM-dd HH:mm")
 //Interval.fromDateTimes(DateTime.fromISO(cadaFecha.fecha), dtFin)
+//contains(fechaE)
 //dtFin.plus({minutes: cadaFecha.duracion})
+//.minus({days: 3})
+//
 //i.length()
+//validDate.isValid //devuelve booleano(valido==true)
 
 //Clase
 class Agenda {
