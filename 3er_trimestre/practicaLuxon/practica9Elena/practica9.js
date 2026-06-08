@@ -1,5 +1,4 @@
 
-//5. salir
 //readline
 const readline=require('node:readline/promises')
 const {stdin:input, stdout:output}=require('node:process')
@@ -12,16 +11,26 @@ const fs=require("fs");
 const fechasString = fs.readFileSync("./practica9Elena/fechas.json");
 let listaFechas = JSON.parse(fechasString);//determina que esta variable es el json
 
+//****De objeto a ISO**************
 //DateTime.fromObject({ year: anoE, month: mesE, day: diaE, hour:horaE ,minute: minE})
+//****DE otro formato a ISO*************
 //fechaE.toISO()
+//****Pasar a un formato determinado***************************************
 //DateTime.fromISO(cadaFecha.fecha).toFormat("yyyy-MM-dd HH:mm")
+//*****Hacer un intervalo de tiempo************************************
 //Interval.fromDateTimes(DateTime.fromISO(cadaFecha.fecha), dtFin)
+//*****Ver si el intervalo contiene esa fecha*********************
 //contains(fechaE)
+//****Añadir/restar tiempo******************************
 //dtFin.plus({minutes: cadaFecha.duracion})
 //.minus({days: 3})
-//
+//****
 //i.length()
+//****Si es una fecha válida***********************************
 //validDate.isValid //devuelve booleano(valido==true)
+
+//ACTUALIZAR EL JSON
+//fs.writeFileSync("./practica9Elena/fechas.json", JSON.stringify(listaFechas))//pasar los datos al json
 
 //Clase
 class Agenda {

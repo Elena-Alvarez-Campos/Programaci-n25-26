@@ -3,7 +3,6 @@ const readline=require('node:readline/promises')
 const {stdin:input, stdout:output}=require('node:process')
 const {error}=require('node:console');
 const rl=readline.createInterface({input,output});
-
 //luxon
 const { DateTime, Interval } = require("luxon");
 //leer el json

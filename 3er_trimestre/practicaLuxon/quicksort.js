@@ -36,5 +36,9 @@ function quicksort(lista) {
     }
     return lista;
 }
-//let lista=[7,3,9,2,4,8,5,1,6]
-console.log(quicksort([7,3,9,2,4,8,0,5,1,6]))
+let lista=[7,3,10,9,2,4,8,5,1,6]
+//console.log(quicksort([7,3,9,2,4,8,0,5,1,6]))
+function comparar(a,b){
+    return a-b
+}
+console.log(lista.sort(comparar))
