@@ -1,0 +1,29 @@
+[
+    {
+        "marca": "Bic", 
+        "capacidad": 30, 
+        "contenido": 18, 
+        "color": "rojo", 
+        "fabricacion": "2026-05-12T12:00:00.000Z" 
+    },{
+        "marca": "Pilot", 
+        "capacidad": 30, 
+        "contenido": 15, 
+        "color": "rojo", 
+        "fabricacion": "2026-04-01T12:00:00.000Z" 
+    },{
+        "marca": "Pilot", 
+        "capacidad": 30, 
+        "contenido": 16, 
+        "color": "azul", 
+        "fabricacion": "2026-03-20T12:00:00.000Z" 
+    },{
+        "marca": "Bic", 
+        "capacidad": 30, 
+        "contenido": 20, 
+        "color": "azul", 
+        "fabricacion": "2026-04-12T12:00:00.000Z" 
+    }
+
+
+]
