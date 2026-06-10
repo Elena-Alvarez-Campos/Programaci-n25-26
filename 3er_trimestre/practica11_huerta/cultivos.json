@@ -1,23 +1,23 @@
 [
     {
         "nombre": "patata",
-        "tiempo_regado": 22,
-        "tiempo_recoleccion":200
+        "tiempo_regado": 1000,
+        "tiempo_recoleccion":4000
     },{
         "nombre": "puerro",
-        "tiempo_regado": 39,
-        "tiempo_recoleccion":300
+        "tiempo_regado": 390,
+        "tiempo_recoleccion":3000
     },{
         "nombre": "tomate",
-        "tiempo_regado": 15,
-        "tiempo_recoleccion":150
+        "tiempo_regado": 150,
+        "tiempo_recoleccion":1500
     },{
         "nombre": "calabacín",
-        "tiempo_regado": 25,
-        "tiempo_recoleccion":250
+        "tiempo_regado": 250,
+        "tiempo_recoleccion":2500
     },{
         "nombre": "lechuga",
-        "tiempo_regado": 21,
-        "tiempo_recoleccion":210
+        "tiempo_regado": 210,
+        "tiempo_recoleccion":2100
     }
 ]

@@ -247,7 +247,7 @@ async function Juego() {
                 for(let j=0; j<8;j++){
                     if(tablero[i][j]=='X'){
                         jugador1++
-                    }else{
+                    }else if(tablero[i][j]=='O'){
                         jugador2++
                     }
                 }
