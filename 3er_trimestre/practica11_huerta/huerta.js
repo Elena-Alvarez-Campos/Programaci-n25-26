@@ -14,7 +14,7 @@ let cultivos = JSON.parse(cultivosString);//determina que esta variable es el js
 //regado
 //seco
 //recolectado
-//
+//muerto
 
 class DatosHuerta {
     constructor() {
@@ -57,28 +57,34 @@ class DatosHuerta {
     }
     //escribe el requisito del estado para buscar
     //si quiere una lista general, el estado es null
-    listar(estado){
-        let lista_huerta=[]
-        if(estado=="recolectado"){
-            lista_huerta=this.huerta
-        }else{
-
-        }
+    listar(lista_huerta,estado){
         try {
-            if(lista_huerta.length<=0){
+            let imprimir="Lista de cultivos "
+            estado==null ? imprimir+="\n" : imprimir+=estado+"s\n"
+            let lista_cultivos=[]
+            if(lista_huerta.length<=0 && estado=="recolectado"){
+                throw new Error("Todavía no hay cultivos en la huerta");
+            }else if(lista_huerta.length<=0 && estado=="seco"){
+                throw new Error("No tienes ningún cultivo seco :D");
+            }else if(lista_huerta.length<=0 && estado=="muerto"){
+                throw new Error("No tienes ningún cultivo seco:D");
+            }else if(lista_huerta.length<=0){
                 throw new Error("Todavía no hay cultivos en la huerta");
             }
             //hay cultivos
-            let imprimir="Lista de cultivos"
-            for(let cada_cultivo of huerto){
+            for(let cada_cultivo of lista_huerta){
                 if(estado==null){
-                    imprimir+=
+                    imprimir+=cada_cultivo.nombre+"\n"
+                    lista_cultivos.push(cada_cultivo)
+                }else if(estado==cada_cultivo.estado){
+
                 }
             }
-            console.log()
+            console.log(imprimir)
         } catch (error) {
             console.error(error.message)
         }
+
     }
 
 }
@@ -119,13 +125,13 @@ async function MenuPrincipal() {
                     
                     break;
                 case 4:
-                    
+                    DatosHuerta1.listar(DatosHuerta1.huerta,null)
                     break;
                 case 5:
                     
                     break;
                 case 6:
-                    console.log(DatosHuerta1.huerta)
+                    DatosHuerta1.listar(DatosHuerta1.recolectados,null)
                     break;
                 case 7:
                     let veredictoFinal=await rl.question('¿De verdad qeu quieres salir?:( (s/n) ')
