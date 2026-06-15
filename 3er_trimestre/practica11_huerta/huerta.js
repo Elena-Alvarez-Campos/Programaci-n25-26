@@ -15,11 +15,37 @@ let cultivos = JSON.parse(cultivosString);//determina que esta variable es el js
 //seco
 //recolectado
 //muerto
-
+/*
+let cultivo={
+    nombre: cultivos[opcion].nombre+"_"+(this.huerta.length+1),
+    fecha_regado: DateTime.now(),
+    estado: "regado",
+    tiempo_regado: cultivos[opcion].tiempo_regado*2,//timepo que puede pasar antes de que se regue otra vez
+    //se duplica porque puede pasar 2 ciclos seco antes de que se muera
+    tiempo_recoleccion: cultivos[opcion].tiempo_recoleccion,
+    proximoRegado: (cultivos[opcion].tiempo_recoleccion)-(cultivos[opcion].tiempo_regado)//la próxima vez que va a ser regado
+    }
+*/
 class DatosHuerta {
     constructor() {
         this.huerta=[]
         this.recolectados=[]
+    }
+    recuento(){
+        for(let cada_cultivo of huerta){
+            if(this.huerta==[]){
+                break//no hace las comprobaciones
+            }
+            if(cada_cultivo.estado=="regado"){
+                
+            }else if(cada_cultivo.estado=="seco"){
+
+            }else if(cada_cultivo.estado=="recolectado"){
+
+            }else if(cada_cultivo.estado=="muerto"){
+                continue//no se hace nada porque ya está ,muerto
+            }
+        }
     }
     async plantar() {
         let elegir=true
@@ -44,8 +70,14 @@ class DatosHuerta {
                     let cultivo={
                         nombre: cultivos[opcion].nombre+"_"+(this.huerta.length+1),
                         fecha_regado: DateTime.now(),
-                        estado: "regado"
+                        estado: "regado",
+                        tiempo_regado: cultivos[opcion].tiempo_regado*2,//timepo que puede pasar antes de que se regue otra vez
+                        //se duplica porque puede pasar 2 ciclos seco antes de que se muera
+                        tiempo_recoleccion: cultivos[opcion].tiempo_recoleccion,
+                        proximoRegado: (cultivos[opcion].tiempo_recoleccion)-(cultivos[opcion].tiempo_regado)//la próxima vez que va a ser regado
+
                     }
+
                     console.log(cultivo)
                     this.huerta.push(cultivo)
                 }
@@ -95,6 +127,7 @@ async function estadoCultivo(cultivo) {
 //Introdución
 //Menú principal
 let DatosHuerta1= new DatosHuerta()
+let timerId = setInterval(() => DatosHuerta1.recuento(), 250);
 async function MenuPrincipal() {
     console.log("Esta es tu huerta :D")
     let programa=true;
@@ -152,5 +185,6 @@ async function MenuPrincipal() {
         }
     }
     rl.close()
+    clearInterval(timerId)
 }
 MenuPrincipal()
